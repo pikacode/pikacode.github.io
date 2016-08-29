@@ -1,0 +1,78 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>1行命令集成极光推送 | pikacode</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">pikacode</a><span class="subtitle">coding &amp; running</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a><a href="/me.html" class="sidebar-nav-item">Me</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>1行命令集成极光推送</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2016-08-29</div></div></div><article><div class="container post"><p>本文写给那些想极速集成推送功能的开发者，不用阅读任何文档，不用写一行代码，1分钟集成，立即使用！</p>
+<ul>
+<li>不论你的项目是用 Objective-C 开发的 native app</li>
+<li>还是基于 Cordova(phonegap、ionic、We5x 等框架)的 Hybrid app</li>
+<li><p>或是 Cocos2d-x 的 iOS 项目，统统只需打开 <strong>终端</strong> 输入一行命令：</p>
+<pre><code>appkey=yourAppkey platform=yourPlatform npm install one-line-jpush-ios
+</code></pre><p><em>下载推送 SDK、添加代码、添加类库全部自动进行，完成后立刻推送！</em><br>参数说明：</p>
+<ul>
+<li>appkey：上传证书在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">【极光推送控制台】</a>获取 appkey <a href="http://docs.jpush.io/guideline/ios_guide/#sdk" target="_blank" rel="external">【获取 appkey 方法】</a></li>
+<li>platform：部署平台，可选值：native、cordova、cocos2dx<br>例：<pre><code>//native
+appkey=yourAppkey platform=native npm install one-line-jpush-ios
+//cordova
+appkey=yourAppkey platform=cordova npm install one-line-jpush-ios
+//cocos2d-x
+appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p>在相应目录下执行完对应的一条命令后，并且 apple 证书配置正确的情况下 <a href="http://docs.jpush.io/client/ios_tutorials/#ios_1" target="_blank" rel="external">(iOS 证书设置指南)</a>，就可以立即推送了！</p>
+<p><strong>针对不同项目，该命令会做不同的事情，需要在对应目录下执行：</strong></p>
+<h3 id="Native-App-Object-C-项目"><a href="#Native-App-Object-C-项目" class="headerlink" title="Native App(Object-C) 项目"></a>Native App(Object-C) 项目</h3><hr>
+<h4 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h4><p>从终端进入到项目<strong>根目录的与项目同名文件夹</strong>下(如：/HelloWorld/HelloWorld/)<br><img src="http://upload-images.jianshu.io/upload_images/1944178-001a94f69faa037b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>在该目录下，终端执行命令</p>
+<pre><code>appkey=yourAppkey platform=native npm install one-line-jpush-ios
+</code></pre><p>其中 <code>yourAppkey</code> 替换成在 <a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a> 创建 app 时得到的 appkey</p>
+</li>
+</ul>
+<h4 id="完成！！"><a href="#完成！！" class="headerlink" title="完成！！"></a>完成！！</h4><p>安装成功命令行提示以下内容<br><img src="http://upload-images.jianshu.io/upload_images/1944178-affb0c1d9819845f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="命令说明"><a href="#命令说明" class="headerlink" title="命令说明"></a>命令说明</h4><p>platform=native 时帮大家做以下事情：</p>
+<ul>
+<li>自动从极光官网下载并安装 <a href="http://docs.jpush.io/updates/#jpush-ios-sdk-v217" target="_blank" rel="external">极光推送最新版本 SDK</a> 到根目录所在项目中</li>
+<li>自动写入<strong>启动 SDK</strong> 及<strong>接收推送</strong>的必要代码 (在 AppDelegate.m 中)</li>
+<li>自动添加必须的类库到 iOS 项目中</li>
+</ul>
+<h3 id="Cordova-项目"><a href="#Cordova-项目" class="headerlink" title="Cordova 项目"></a>Cordova 项目</h3><hr>
+<h4 id="执行命令-1"><a href="#执行命令-1" class="headerlink" title="执行命令"></a>执行命令</h4><ul>
+<li><p>从终端进入到 Cordova 项目的<strong>根</strong>目录下：<br><img src="http://upload-images.jianshu.io/upload_images/1944178-4f599d1aa473fc59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li><p>在该目录下，终端执行命令即可：</p>
+<pre><code>appkey=yourAppkey platform=cordova npm install one-line-jpush-ios
+</code></pre><p>其中 <code>yourAppkey</code> 替换成准备工作中在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a>创建 app 时得到的 appkey</p>
+</li>
+</ul>
+<h4 id="完成！！-1"><a href="#完成！！-1" class="headerlink" title="完成！！"></a>完成！！</h4><p>安装成功命令行提示以下内容<br><img src="http://upload-images.jianshu.io/upload_images/1944178-f286a46ff730eb84.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="命令说明-1"><a href="#命令说明-1" class="headerlink" title="命令说明"></a>命令说明</h4><p>platform=cordova 时帮大家做以下事情：</p>
+<ul>
+<li>自动创建 iOS 项目</li>
+<li>自动从 GitHub 上下载最新的 极光推送 <a href="https://github.com/jpush/jpush-phonegap-plugin" target="_blank" rel="external">JPush Phonegap Plugin</a> 插件</li>
+<li>自动安装该插件到当前项目并添加必要配置</li>
+<li>自动添加必须的类库到 iOS 项目中</li>
+</ul>
+<h3 id="Cocos2d-x-项目"><a href="#Cocos2d-x-项目" class="headerlink" title="Cocos2d-x 项目"></a>Cocos2d-x 项目</h3><hr>
+<h4 id="执行命令-2"><a href="#执行命令-2" class="headerlink" title="执行命令"></a>执行命令</h4><ul>
+<li>从终端进入到 Cocos2d-x 项目的 <code>proj.ios_mac</code> 目录下，跟 <code>ios</code>、<code>mac</code> 文件夹同一级：</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1944178-a8915b029356dfa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>在该目录下，终端执行命令即可：</p>
+<pre><code>appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios
+</code></pre><p>其中 <code>yourAppkey</code> 替换成在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a>创建 app 时得到的 appkey</p>
+</li>
+</ul>
+<h4 id="完成！！-2"><a href="#完成！！-2" class="headerlink" title="完成！！"></a>完成！！</h4><p>安装成功命令行提示以下内容<br><img src="http://upload-images.jianshu.io/upload_images/1944178-dcf93d9460f8fb1d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="命令说明-2"><a href="#命令说明-2" class="headerlink" title="命令说明"></a>命令说明</h4><p>platform=cocos2dx 时帮大家做以下事情：</p>
+<ul>
+<li>自动从 GitHub 上下载最新的 Cocos2d-x 插件 <a href="https://github.com/jpush/jpush-cocos2d-x-plugin" target="_blank" rel="external">JPush Cocos2d-x Plugin</a></li>
+<li>自动安装该插件到当前项目并添加必要配置</li>
+<li>自动写入<strong>启动 SDK</strong>及<strong>接收推送</strong>的必要代码 (在 AppController.mm 中)</li>
+<li>自动添加必须的类库到 iOS 项目中</li>
+</ul>
+<h3 id="终端使用方法-amp-控制台推送方法"><a href="#终端使用方法-amp-控制台推送方法" class="headerlink" title="终端使用方法 &amp; 控制台推送方法"></a>终端使用方法 &amp; 控制台推送方法</h3><hr>
+<p><a href="https://github.com/Yasashi/one-line-jpush" target="_blank" rel="external">终端使用方法 &amp; 控制台推送方法 点我</a></p>
+</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">pikacode</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>
