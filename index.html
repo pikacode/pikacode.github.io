@@ -87,7 +87,7 @@
 <meta name="description" content="dreaming &amp; advancing">
 <meta property="og:type" content="website">
 <meta property="og:title" content="pikacode">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/index.html">
 <meta property="og:site_name" content="pikacode">
 <meta property="og:description" content="dreaming &amp; advancing">
 <meta name="twitter:card" content="summary">
@@ -113,9 +113,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/archives/"/>
 
-  <title> pikacode </title>
+  <title> 归档 | pikacode </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,9 +146,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -181,21 +179,11 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             主页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
           </a>
         </li>
       
@@ -235,333 +223,178 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 4 篇日志。 继续努力。
+    </span>
+
     
+
+      
+      
       
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
+      
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/30/1行命令集成极光推送/" itemprop="url">
-                  1行命令集成极光推送
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-30T13:41:14+08:00" content="2016-08-30">
-              2016-08-30
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/30/1行命令集成极光推送/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/30/1行命令集成极光推送/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
       
       
 
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-          
-            <p>本文写给那些想极速集成推送功能的开发者，不用阅读任何文档，不用写一行代码，1分钟集成，立即使用！</p>
-<ul>
-<li>不论你的项目是用 Objective-C 开发的 native app</li>
-<li>还是基于 Cordova(phonegap、ionic、We5x 等框架)的 Hybrid app</li>
-<li><p>或是 Cocos2d-x 的 iOS 项目，统统只需打开 <strong>终端</strong> 输入一行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">appkey=yourAppkey platform=yourPlatform npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
-<p><em>下载推送 SDK、添加代码、添加类库全部自动进行，完成后立刻推送！</em><br>参数说明：</p>
-<ul>
-<li>appkey：上传证书在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">【极光推送控制台】</a>获取 appkey <a href="http://docs.jpush.io/guideline/ios_guide/#sdk" target="_blank" rel="external">【获取 appkey 方法】</a></li>
-<li>platform：部署平台，可选值：native、cordova、cocos2dx<br>例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//native</div><div class="line">appkey=yourAppkey platform=native npm install one-line-jpush-ios</div><div class="line">//cordova</div><div class="line">appkey=yourAppkey platform=cordova npm install one-line-jpush-ios</div><div class="line">//cocos2d-x</div><div class="line">appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<p>在相应目录下执行完对应的一条命令后，并且 apple 证书配置正确的情况下 <a href="http://docs.jpush.io/client/ios_tutorials/#ios_1" target="_blank" rel="external">(iOS 证书设置指南)</a>，就可以立即推送了！</p>
-<p><strong>针对不同项目，该命令会做不同的事情，需要在对应目录下执行：</strong></p>
-<h3 id="Native-App-Object-C-项目"><a href="#Native-App-Object-C-项目" class="headerlink" title="Native App(Object-C) 项目"></a>Native App(Object-C) 项目</h3><hr>
-<h4 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h4><p>从终端进入到项目<strong>根目录的与项目同名文件夹</strong>下(如：/HelloWorld/HelloWorld/)<br><img src="http://upload-images.jianshu.io/upload_images/1944178-001a94f69faa037b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li><p>在该目录下，终端执行命令</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">appkey=yourAppkey platform=native npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
-<p>其中 <code>yourAppkey</code> 替换成在 <a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a> 创建 app 时得到的 appkey</p>
-</li>
-</ul>
-<h4 id="完成！！"><a href="#完成！！" class="headerlink" title="完成！！"></a>完成！！</h4><p>安装成功命令行提示以下内容<br><img src="http://upload-images.jianshu.io/upload_images/1944178-affb0c1d9819845f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h4 id="命令说明"><a href="#命令说明" class="headerlink" title="命令说明"></a>命令说明</h4><p>platform=native 时帮大家做以下事情：</p>
-<ul>
-<li>自动从极光官网下载并安装 <a href="http://docs.jpush.io/updates/#jpush-ios-sdk-v217" target="_blank" rel="external">极光推送最新版本 SDK</a> 到根目录所在项目中</li>
-<li>自动写入<strong>启动 SDK</strong> 及<strong>接收推送</strong>的必要代码 (在 AppDelegate.m 中)</li>
-<li>自动添加必须的类库到 iOS 项目中</li>
-</ul>
-<h3 id="Cordova-项目"><a href="#Cordova-项目" class="headerlink" title="Cordova 项目"></a>Cordova 项目</h3><hr>
-<h4 id="执行命令-1"><a href="#执行命令-1" class="headerlink" title="执行命令"></a>执行命令</h4><ul>
-<li><p>从终端进入到 Cordova 项目的<strong>根</strong>目录下：<br><img src="http://upload-images.jianshu.io/upload_images/1944178-4f599d1aa473fc59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-</li>
-<li><p>在该目录下，终端执行命令即可：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">appkey=yourAppkey platform=cordova npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
-<p>其中 <code>yourAppkey</code> 替换成准备工作中在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a>创建 app 时得到的 appkey</p>
-</li>
-</ul>
-<h4 id="完成！！-1"><a href="#完成！！-1" class="headerlink" title="完成！！"></a>完成！！</h4><p>安装成功命令行提示以下内容<br><img src="http://upload-images.jianshu.io/upload_images/1944178-f286a46ff730eb84.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h4 id="命令说明-1"><a href="#命令说明-1" class="headerlink" title="命令说明"></a>命令说明</h4><p>platform=cordova 时帮大家做以下事情：</p>
-<ul>
-<li>自动创建 iOS 项目</li>
-<li>自动从 GitHub 上下载最新的 极光推送 <a href="https://github.com/jpush/jpush-phonegap-plugin" target="_blank" rel="external">JPush Phonegap Plugin</a> 插件</li>
-<li>自动安装该插件到当前项目并添加必要配置</li>
-<li>自动添加必须的类库到 iOS 项目中</li>
-</ul>
-<h3 id="Cocos2d-x-项目"><a href="#Cocos2d-x-项目" class="headerlink" title="Cocos2d-x 项目"></a>Cocos2d-x 项目</h3><hr>
-<h4 id="执行命令-2"><a href="#执行命令-2" class="headerlink" title="执行命令"></a>执行命令</h4><ul>
-<li>从终端进入到 Cocos2d-x 项目的 <code>proj.ios_mac</code> 目录下，跟 <code>ios</code>、<code>mac</code> 文件夹同一级：</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1944178-a8915b029356dfa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li><p>在该目录下，终端执行命令即可：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
-<p>其中 <code>yourAppkey</code> 替换成在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a>创建 app 时得到的 appkey</p>
-</li>
-</ul>
-<h4 id="完成！！-2"><a href="#完成！！-2" class="headerlink" title="完成！！"></a>完成！！</h4><p>安装成功命令行提示以下内容<br><img src="http://upload-images.jianshu.io/upload_images/1944178-dcf93d9460f8fb1d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h4 id="命令说明-2"><a href="#命令说明-2" class="headerlink" title="命令说明"></a>命令说明</h4><p>platform=cocos2dx 时帮大家做以下事情：</p>
-<ul>
-<li>自动从 GitHub 上下载最新的 Cocos2d-x 插件 <a href="https://github.com/jpush/jpush-cocos2d-x-plugin" target="_blank" rel="external">JPush Cocos2d-x Plugin</a></li>
-<li>自动安装该插件到当前项目并添加必要配置</li>
-<li>自动写入<strong>启动 SDK</strong>及<strong>接收推送</strong>的必要代码 (在 AppController.mm 中)</li>
-<li>自动添加必须的类库到 iOS 项目中</li>
-</ul>
-<h3 id="终端使用方法-amp-控制台推送方法"><a href="#终端使用方法-amp-控制台推送方法" class="headerlink" title="终端使用方法 &amp; 控制台推送方法"></a>终端使用方法 &amp; 控制台推送方法</h3><hr>
-<p><a href="https://github.com/Yasashi/one-line-jpush" target="_blank" rel="external">终端使用方法 &amp; 控制台推送方法 点我</a></p>
-
-          
+            <a class="post-title-link" href="/2016/07/25/实现 iOS 前台时的推送弹窗效果/" itemprop="url">
+              
+                <span itemprop="name">实现 iOS 前台时的推送弹窗效果</span>
+              
+            </a>
         
-      
-    </div>
+      </h1>
 
-    <div>
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-07-25T17:11:38+08:00"
+              content="2016-07-25" >
+          07-25
+        </time>
+      </div>
 
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    </header>
   </article>
 
 
+
     
+
+      
+      
       
 
-  
-  
+      
+      
 
-  
-  
-  
+      
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-    
-      <header class="post-header">
-
+      <h1 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2016/06/30/玩转 iOS 10 推送 —— UserNotifications Framework（上）/" itemprop="url">
               
-                
-                <a class="post-title-link" href="/2016/08/29/HBuilder 第三方插件开发/" itemprop="url">
-                  HBuilder 第三方插件开发
-                </a>
+                <span itemprop="name">玩转 iOS 10 推送 —— UserNotifications Framework（上）</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-29T15:18:12+08:00" content="2016-08-29">
-              2016-08-29
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-06-30T10:03:26+08:00"
+              content="2016-06-30" >
+          06-30
+        </time>
+      </div>
 
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/29/HBuilder 第三方插件开发/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/29/HBuilder 第三方插件开发/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本人最近开发了 HBulider 集成极光推送(JPush)的插件，<strong>鉴于 HBuilder 官网上缺少 iOS 的示例</strong> ，而且官网也只给出了 JavaScript 调用 native 代码的接口，对于 native 调用 JavaScript 并且向 JavaScript 发送 event 事件的方法却在 native层 进行了封装。笔者在踩过了一些小坑之后，终于成功的开发了插件，并且 <strong>实现了 JavaScript 和 native 的双向沟通</strong> 。特此跟大家分享一下在 HBuilder 插件开发过程中的经验和关键代码。</p>
-<h2 id="JPush-实例展示"><a href="#JPush-实例展示" class="headerlink" title="JPush 实例展示"></a>JPush 实例展示</h2><p>首先附上完整 demo <a href="https://github.com/jpush/jpush-hbuilder-demo" target="_blank" rel="external">[JPush HBuilder Demo]</a> 并为大家展示一下：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1944178-cbeb0ed0f747e50c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="实例及功能展示"></p>
-<p>以上即为根据本文内容开发出的实例</p>
-<p>如您需使用极光推送产品请至此 <a href="https://www.jpush.cno" target="_blank" rel="external">[极光推送官方网站]</a></p>
-<h2 id="新插件配置"><a href="#新插件配置" class="headerlink" title="新插件配置"></a>新插件配置</h2><h5 id="配置-manifest-json"><a href="#配置-manifest-json" class="headerlink" title="配置 manifest.json"></a>配置 manifest.json</h5><p>首先用源码的方式打开工程 /Pandora/ 目录下的 manifest.json ，在 “permissions” 中添加新的插件名称：<br>​<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> "permissions": &#123;</div><div class="line">	"Push":&#123;</div><div class="line">		"description": "极光推送插件"</div><div class="line">	&#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<h5 id="配置-feature-plist"><a href="#配置-feature-plist" class="headerlink" title="配置 feature.plist"></a>配置 feature.plist</h5><p>在 Xcode 中打开 /PandoraApi.bundle/ 目录下的 feature.plist ，为插件添加新的 item：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1944178-93398821b63f61e9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="feature.plist"></p>
-<p>其中需要注意的是：</p>
-<ul>
-<li>最顶部的 key 值 Push ，必须跟 manifest.json 中配置的插件名一致</li>
-<li>class 的值需要跟 native 代码中的类名一致，此处为 JPushPlugin</li>
-<li>因为本插件拓展自 HBuilder 已经封装好的 PGPush ，故 baseclass 为父类</li>
-</ul>
-<p>通过以上配置，就可以在 JavaScript 中通过 Push –&gt; JPushPlugin 的对应关系，调用 native 代码了。</p>
-<h2 id="JavaScript-调用本地代码的实现"><a href="#JavaScript-调用本地代码的实现" class="headerlink" title="JavaScript 调用本地代码的实现"></a>JavaScript 调用本地代码的实现</h2><p>这部分在  <a href="http://ask.dcloud.net.cn/docs/#http://ask.dcloud.net.cn/article/67" target="_blank" rel="external">[HBuilder 官网插件开发指导]</a> 中已经给出了较详细的说明，这里就不再赘述，附上关键代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"plusready"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> _BARCODE = <span class="string">'Push'</span>;	<span class="comment">// 插件名称</span></div><div class="line">	<span class="keyword">var</span> B = <span class="built_in">window</span>.plus.bridge;</div><div class="line">    </div><div class="line">	<span class="keyword">var</span> JPushPlugin = &#123;</div><div class="line"></div><div class="line">		callNative : <span class="function"><span class="keyword">function</span>(<span class="params">fname, args, successCallback</span>) </span>&#123;</div><div class="line">			<span class="keyword">var</span> callbackId = <span class="keyword">this</span>.getCallbackId(successCallback, <span class="keyword">this</span>.errorCallback);</div><div class="line">			<span class="keyword">if</span> (args != <span class="literal">null</span>) &#123;</div><div class="line">				args.unshift(callbackId);</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				<span class="keyword">var</span> args = [callbackId];</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> B.exec(_BARCODE, fname, args);</div><div class="line">		&#125;,</div><div class="line">		</div><div class="line">		getCallbackId : <span class="function"><span class="keyword">function</span>(<span class="params">successCallback</span>) </span>&#123;</div><div class="line">			<span class="keyword">var</span> success = <span class="keyword">typeof</span> successCallback !== <span class="string">'function'</span> ? <span class="literal">null</span> : <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span></div><div class="line">			&#123;</div><div class="line">				successCallback(args);</div><div class="line">			&#125;;</div><div class="line">			callbackId = B.callbackId(success, <span class="keyword">this</span>.errorCallback);</div><div class="line">			<span class="keyword">return</span> callbackId;</div><div class="line">		&#125;,</div><div class="line">		</div><div class="line">		errorCallback : <span class="function"><span class="keyword">function</span>(<span class="params">errorMsg</span>) </span>&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">"Javascript callback error: "</span> + errorMsg);</div><div class="line">		&#125;,</div><div class="line">			</div><div class="line">		jsHello : <span class="function"><span class="keyword">function</span>(<span class="params">args</span>)</span>&#123;</div><div class="line">			<span class="keyword">this</span>.callNative(<span class="string">"nativeHello"</span>, args, <span class="literal">null</span>);</div><div class="line">		&#125;,</div><div class="line">		</div><div class="line">    <span class="built_in">window</span>.plus.Push = JPushPlugin;</div><div class="line">    </div><div class="line">&#125;, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
-<p>其中 callNative 为封装好用于调用 native 代码的方法，参数如下：</p>
-<ul>
-<li>fname：要调用的 native 的方法名</li>
-<li>args：传给 native 的参数，必须是数组</li>
-<li>successCallback:成功回调，null 为没有</li>
-</ul>
-<p>以上代码最后面的 “jsHello” 方法，即为封装好的 js 方法，在工程的其他文件里通过 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.plus.Push.jsHello(args);</div></pre></td></tr></table></figure>
-<p>的方式即可调用本地的 “nativeHello” 方法。</p>
-<h2 id="Objective-C-调用-js-的实现"><a href="#Objective-C-调用-js-的实现" class="headerlink" title="Objective-C 调用 js 的实现"></a>Objective-C 调用 js 的实现</h2><h4 id="与-Phonegap-的差异"><a href="#与-Phonegap-的差异" class="headerlink" title="与 Phonegap 的差异"></a>与 Phonegap 的差异</h4><p>在 HBuilder 官方文档中并没有提及 OC 调用 js 的方法，从 OC 中的类名（PGPlugin 等）可以看出，其应该是对 Phonegap 的封装，但是却并没有提供 Phonegap 中直接调用 js 的接口，例如：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *evalString = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"jsFunction(%@)"</span>,args];</div><div class="line">[<span class="keyword">self</span>.commandDelegate evalJs:evalString];</div></pre></td></tr></table></figure>
-<p>也无法向 js 发送 event ，例如：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *evalString = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"cordova.fireDocumentEvent('event_name',%@)"</span>,args];</div><div class="line">[<span class="keyword">self</span>.commandDelegate evalJs:evalString];</div></pre></td></tr></table></figure>
-<p>其中 self 为继承自 CDVPlugin 的插件类实例。</p>
-<p>经过笔者的查找，发现在 HBuilder 提供的 PDRCoreAppFrame（：PDRNView ：UIView） 类中，有如下方法可以调用 js 代码：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> @brief 在当前页面同步执行Javascript</div><div class="line"> @param js javasrcipt 脚本</div><div class="line"> @return NSString* 执行结果</div><div class="line"> */</div><div class="line">- (<span class="built_in">NSString</span>*)stringByEvaluatingJavaScriptFromString:(<span class="built_in">NSString</span>*)js;</div></pre></td></tr></table></figure>
-<h4 id="获取-PDRCoreAppFrame-对象"><a href="#获取-PDRCoreAppFrame-对象" class="headerlink" title="获取 PDRCoreAppFrame 对象"></a>获取 PDRCoreAppFrame 对象</h4><p>其中 PDRCoreAppFrame 为控制 webView 的实例，数量可能为多个，且在视图层级中的位置不确定，故需要通过遍历 app 中所有 view ，来找出 PDRCoreAppFrame ，以下是通过 <strong>递归</strong> 找出所有 PDRCoreAppFrame 的方法：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">NSMutableArray</span>*)searchViews:(<span class="built_in">NSArray</span>*)views&#123;</div><div class="line">    <span class="built_in">NSMutableArray</span> *frames = [<span class="built_in">NSMutableArray</span> array];</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">UIView</span> *temp <span class="keyword">in</span> views) &#123;</div><div class="line">        <span class="keyword">if</span> ([temp isMemberOfClass:[PDRCoreAppFrame <span class="keyword">class</span>]]) &#123;</div><div class="line">            [frames addObject:temp];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> ([temp subviews]) &#123;</div><div class="line">            <span class="built_in">NSMutableArray</span> *tempArray = [<span class="keyword">self</span> searchViews:[temp subviews]];</div><div class="line">            <span class="keyword">for</span> (<span class="built_in">UIView</span> *tempView <span class="keyword">in</span> tempArray) &#123;</div><div class="line">                <span class="keyword">if</span> ([tempView isMemberOfClass:[PDRCoreAppFrame <span class="keyword">class</span>]]) &#123;</div><div class="line">                    [frames addObject:tempView];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> frames;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>其中：</p>
-<ul>
-<li>参数 views 为同一层级中的 views</li>
-<li>返回值 frames 为从该层级中找到的 PDRCoreAppFrame</li>
-</ul>
-<h4 id="调用-js"><a href="#调用-js" class="headerlink" title="调用 js"></a>调用 js</h4><p>这样我们就可以用上述方法获取到所有的 PDRCoreAppFrame 进而调用 js 代码了：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)evaluatingJavaScriptFromString:(<span class="built_in">NSString</span>*)string&#123;</div><div class="line">    <span class="built_in">UIWindow</span> *window = [[<span class="built_in">UIApplication</span> sharedApplication] keyWindow];</div><div class="line">    <span class="built_in">NSArray</span> *views = [[[window rootViewController] view] subviews];</div><div class="line">    <span class="comment">//调用上述方法</span></div><div class="line">    <span class="built_in">NSArray</span> *frames = [<span class="keyword">self</span> searchViews:views];</div><div class="line">    <span class="keyword">for</span> (PDRCoreAppFrame *appFrame <span class="keyword">in</span> frames) &#123;</div><div class="line">        <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</div><div class="line">            [appFrame stringByEvaluatingJavaScriptFromString:string];</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>调用示例：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *evalString = <span class="string">@"alert("</span>make a js call<span class="string">");"</span>;</div><div class="line">[<span class="keyword">self</span> evaluatingJavaScriptFromString:evalString];</div></pre></td></tr></table></figure>
-<p><strong>但是并不建议用这种方式</strong>，因为该方法会强制向每个 webView 的页面都发送一条执行语句，有时会出现并不希望的结果。因此，<strong>建议使用下面发送 event 的方式</strong>，并在 js 中接收后进行处理。</p><p></p>
-<h4 id="向-js-发送-event"><a href="#向-js-发送-event" class="headerlink" title="向 js 发送 event"></a>向 js 发送 event</h4><p>笔者对上述方法再次进行了封装：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)fireEvent:(<span class="built_in">NSString</span>*)event args:(<span class="keyword">id</span>)args&#123;</div><div class="line">    <span class="built_in">NSString</span> *evalString = <span class="literal">nil</span>;</div><div class="line">    <span class="built_in">NSError</span>  *error      = <span class="literal">nil</span>;</div><div class="line">    <span class="built_in">NSString</span> *argsString = <span class="literal">nil</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (args) &#123;</div><div class="line">        <span class="keyword">if</span> ([args isKindOfClass:[<span class="built_in">NSString</span> <span class="keyword">class</span>]]) &#123;</div><div class="line">            argsString = args;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="built_in">NSData</span>   *jsonData   = [<span class="built_in">NSJSONSerialization</span> dataWithJSONObject:args options:<span class="number">0</span> error:&amp;error];</div><div class="line">            argsString = [[<span class="built_in">NSString</span> alloc]initWithData:jsonData encoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line">            <span class="keyword">if</span> (error) &#123;</div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,error);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        evalString = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"\</span></div><div class="line">                      var jpushEvent = document.createEvent('HTMLEvents');\</div><div class="line">                      jpushEvent.initEvent('%@', true, true);\</div><div class="line">                      jpushEvent.eventType = 'message';\</div><div class="line">                      jpushEvent.arguments = '%@';\</div><div class="line">                      document.dispatchEvent(jpushEvent);",event,argsString];</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        evalString = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"\</span></div><div class="line">                      var jpushEvent = document.createEvent('HTMLEvents');\</div><div class="line">                      jpushEvent.initEvent('%@', true, true);\</div><div class="line">                      jpushEvent.eventType = 'message';\</div><div class="line">                      document.dispatchEvent(jpushEvent);",event];</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//调用上述方法</span></div><div class="line">    [<span class="keyword">self</span> evaluatingJavaScriptFromString:evalString];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>其中对传入的 args 进行了简单的处理。</p>
-<p><strong>最后我们通过调用一行代码即可做到向 js 发送 event ：</strong></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span> fireEvent:<span class="string">@"event_name"</span> args:args];</div></pre></td></tr></table></figure>
-<h4 id="js-接收-event-并处理"><a href="#js-接收-event-并处理" class="headerlink" title="js 接收 event 并处理"></a>js 接收 event 并处理</h4><p>在上一步中发送了 “event_name” 的事件之后，可以在 html 的 script 中通过以下方式捕获：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"event_name"</span>, onEventFunc, <span class="literal">false</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">onEventFunc</span>(<span class="params">args</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> obj = <span class="built_in">JSON</span>.parese(args);</div><div class="line">	<span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		alert(obj);</div><div class="line">	&#125;,<span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>至此，就彻底实现了 Objective-C 向 js 的沟通</strong></p>
-<h3 id="如您对本文有任何疑问或建议，欢迎交流"><a href="#如您对本文有任何疑问或建议，欢迎交流" class="headerlink" title="* 如您对本文有任何疑问或建议，欢迎交流"></a>* 如您对本文有任何疑问或建议，欢迎交流</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    </header>
   </article>
 
 
+
     
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/31/1行命令集成极光推送/" itemprop="url">
+              
+                <span itemprop="name">1行命令集成极光推送</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-31T09:44:42+08:00"
+              content="2016-05-31" >
+          05-31
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/04/21/HBuilder 第三方插件开发/" itemprop="url">
+              
+                <span itemprop="name">HBuilder 第三方插件开发</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-04-21T16:10:55+08:00"
+              content="2016-04-21" >
+          04-21
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
   </section>
 
   
+
 
 
           </div>
@@ -599,8 +432,8 @@
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">2</span>
+            <a href="/">
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -610,7 +443,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -728,6 +561,12 @@
   
 
   
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
+
 
   
 
