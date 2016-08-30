@@ -1,19 +1,351 @@
-<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>1行命令集成极光推送 | pikacode</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">pikacode</a><span class="subtitle">coding &amp; running</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>1行命令集成极光推送</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2016-08-29</div></div></div><article><div class="container post"><p>本文写给那些想极速集成推送功能的开发者，不用阅读任何文档，不用写一行代码，1分钟集成，立即使用！</p>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文写给那些想极速集成推送功能的开发者，不用阅读任何文档，不用写一行代码，1分钟集成，立即使用！
+
+不论你的项目是用 Objective-C 开发的 native app
+还是基于 Cordova(phonegap、ionic、We5x 等框架)的 Hybrid app
+或是 Cocos2d-x 的 iOS 项目，统统只需打开 终端 输入一行命令：
+1appkey=yourAppkey platf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1行命令集成极光推送">
+<meta property="og:url" content="http://yoursite.com/2016/08/29/1行命令集成极光推送/index.html">
+<meta property="og:site_name" content="pikacode">
+<meta property="og:description" content="本文写给那些想极速集成推送功能的开发者，不用阅读任何文档，不用写一行代码，1分钟集成，立即使用！
+
+不论你的项目是用 Objective-C 开发的 native app
+还是基于 Cordova(phonegap、ionic、We5x 等框架)的 Hybrid app
+或是 Cocos2d-x 的 iOS 项目，统统只需打开 终端 输入一行命令：
+1appkey=yourAppkey platf">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-001a94f69faa037b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-affb0c1d9819845f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-4f599d1aa473fc59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-f286a46ff730eb84.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-a8915b029356dfa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-dcf93d9460f8fb1d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-08-29T14:39:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1行命令集成极光推送">
+<meta name="twitter:description" content="本文写给那些想极速集成推送功能的开发者，不用阅读任何文档，不用写一行代码，1分钟集成，立即使用！
+
+不论你的项目是用 Objective-C 开发的 native app
+还是基于 Cordova(phonegap、ionic、We5x 等框架)的 Hybrid app
+或是 Cocos2d-x 的 iOS 项目，统统只需打开 终端 输入一行命令：
+1appkey=yourAppkey platf">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1944178-001a94f69faa037b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/29/1行命令集成极光推送/"/>
+
+  <title> 1行命令集成极光推送 | pikacode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">pikacode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">coding & running</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                1行命令集成极光推送
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-29T15:18:12+08:00" content="2016-08-29">
+              2016-08-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/29/1行命令集成极光推送/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/29/1行命令集成极光推送/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文写给那些想极速集成推送功能的开发者，不用阅读任何文档，不用写一行代码，1分钟集成，立即使用！</p>
 <ul>
 <li>不论你的项目是用 Objective-C 开发的 native app</li>
 <li>还是基于 Cordova(phonegap、ionic、We5x 等框架)的 Hybrid app</li>
 <li><p>或是 Cocos2d-x 的 iOS 项目，统统只需打开 <strong>终端</strong> 输入一行命令：</p>
-<pre><code>appkey=yourAppkey platform=yourPlatform npm install one-line-jpush-ios
-</code></pre><p><em>下载推送 SDK、添加代码、添加类库全部自动进行，完成后立刻推送！</em><br>参数说明：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">appkey=yourAppkey platform=yourPlatform npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
+<p><em>下载推送 SDK、添加代码、添加类库全部自动进行，完成后立刻推送！</em><br>参数说明：</p>
 <ul>
 <li>appkey：上传证书在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">【极光推送控制台】</a>获取 appkey <a href="http://docs.jpush.io/guideline/ios_guide/#sdk" target="_blank" rel="external">【获取 appkey 方法】</a></li>
-<li>platform：部署平台，可选值：native、cordova、cocos2dx<br>例：<pre><code>//native
-appkey=yourAppkey platform=native npm install one-line-jpush-ios
-//cordova
-appkey=yourAppkey platform=cordova npm install one-line-jpush-ios
-//cocos2d-x
-appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios
-</code></pre></li>
+<li>platform：部署平台，可选值：native、cordova、cocos2dx<br>例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//native</div><div class="line">appkey=yourAppkey platform=native npm install one-line-jpush-ios</div><div class="line">//cordova</div><div class="line">appkey=yourAppkey platform=cordova npm install one-line-jpush-ios</div><div class="line">//cocos2d-x</div><div class="line">appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 </ul>
@@ -23,8 +355,8 @@ appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios
 <h4 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h4><p>从终端进入到项目<strong>根目录的与项目同名文件夹</strong>下(如：/HelloWorld/HelloWorld/)<br><img src="http://upload-images.jianshu.io/upload_images/1944178-001a94f69faa037b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <ul>
 <li><p>在该目录下，终端执行命令</p>
-<pre><code>appkey=yourAppkey platform=native npm install one-line-jpush-ios
-</code></pre><p>其中 <code>yourAppkey</code> 替换成在 <a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a> 创建 app 时得到的 appkey</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">appkey=yourAppkey platform=native npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
+<p>其中 <code>yourAppkey</code> 替换成在 <a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a> 创建 app 时得到的 appkey</p>
 </li>
 </ul>
 <h4 id="完成！！"><a href="#完成！！" class="headerlink" title="完成！！"></a>完成！！</h4><p>安装成功命令行提示以下内容<br><img src="http://upload-images.jianshu.io/upload_images/1944178-affb0c1d9819845f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -39,8 +371,8 @@ appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios
 <li><p>从终端进入到 Cordova 项目的<strong>根</strong>目录下：<br><img src="http://upload-images.jianshu.io/upload_images/1944178-4f599d1aa473fc59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 </li>
 <li><p>在该目录下，终端执行命令即可：</p>
-<pre><code>appkey=yourAppkey platform=cordova npm install one-line-jpush-ios
-</code></pre><p>其中 <code>yourAppkey</code> 替换成准备工作中在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a>创建 app 时得到的 appkey</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">appkey=yourAppkey platform=cordova npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
+<p>其中 <code>yourAppkey</code> 替换成准备工作中在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a>创建 app 时得到的 appkey</p>
 </li>
 </ul>
 <h4 id="完成！！-1"><a href="#完成！！-1" class="headerlink" title="完成！！"></a>完成！！</h4><p>安装成功命令行提示以下内容<br><img src="http://upload-images.jianshu.io/upload_images/1944178-f286a46ff730eb84.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -58,8 +390,8 @@ appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios
 <p><img src="http://upload-images.jianshu.io/upload_images/1944178-a8915b029356dfa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <ul>
 <li><p>在该目录下，终端执行命令即可：</p>
-<pre><code>appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios
-</code></pre><p>其中 <code>yourAppkey</code> 替换成在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a>创建 app 时得到的 appkey</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios</div></pre></td></tr></table></figure>
+<p>其中 <code>yourAppkey</code> 替换成在<a href="https://www.jpush.cn/common/apps" target="_blank" rel="external">极光控制台</a>创建 app 时得到的 appkey</p>
 </li>
 </ul>
 <h4 id="完成！！-2"><a href="#完成！！-2" class="headerlink" title="完成！！"></a>完成！！</h4><p>安装成功命令行提示以下内容<br><img src="http://upload-images.jianshu.io/upload_images/1944178-dcf93d9460f8fb1d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -72,7 +404,291 @@ appkey=yourAppkey platform=cocos2dx npm install one-line-jpush-ios
 </ul>
 <h3 id="终端使用方法-amp-控制台推送方法"><a href="#终端使用方法-amp-控制台推送方法" class="headerlink" title="终端使用方法 &amp; 控制台推送方法"></a>终端使用方法 &amp; 控制台推送方法</h3><hr>
 <p><a href="https://github.com/Yasashi/one-line-jpush" target="_blank" rel="external">终端使用方法 &amp; 控制台推送方法 点我</a></p>
-</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:pikacode@qq.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="https://github.com/pikacode" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">pikacode</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
-    $(".fancybox").fancybox();
-});
-</script></body></html>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/29/HBuilder 第三方插件开发/" rel="next" title="HBuilder 第三方插件开发">
+                <i class="fa fa-chevron-left"></i> HBuilder 第三方插件开发
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/29/1行命令集成极光推送/"
+           data-title="1行命令集成极光推送" data-url="http://yoursite.com/2016/08/29/1行命令集成极光推送/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pikacode" />
+          <p class="site-author-name" itemprop="name">pikacode</p>
+          <p class="site-description motion-element" itemprop="description">dreaming & advancing</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Native-App-Object-C-项目"><span class="nav-number">1.</span> <span class="nav-text">Native App(Object-C) 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行命令"><span class="nav-number">1.1.</span> <span class="nav-text">执行命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完成！！"><span class="nav-number">1.2.</span> <span class="nav-text">完成！！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令说明"><span class="nav-number">1.3.</span> <span class="nav-text">命令说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cordova-项目"><span class="nav-number">2.</span> <span class="nav-text">Cordova 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行命令-1"><span class="nav-number">2.1.</span> <span class="nav-text">执行命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完成！！-1"><span class="nav-number">2.2.</span> <span class="nav-text">完成！！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令说明-1"><span class="nav-number">2.3.</span> <span class="nav-text">命令说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cocos2d-x-项目"><span class="nav-number">3.</span> <span class="nav-text">Cocos2d-x 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行命令-2"><span class="nav-number">3.1.</span> <span class="nav-text">执行命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完成！！-2"><span class="nav-number">3.2.</span> <span class="nav-text">完成！！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令说明-2"><span class="nav-number">3.3.</span> <span class="nav-text">命令说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终端使用方法-amp-控制台推送方法"><span class="nav-number">4.</span> <span class="nav-text">终端使用方法 & 控制台推送方法</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikacode</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"pikacode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
