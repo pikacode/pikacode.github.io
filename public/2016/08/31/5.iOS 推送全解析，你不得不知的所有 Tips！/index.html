@@ -1,0 +1,839 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Push Notification," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。
+从 iOS 10 新增的 UserNotifications Framework 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 推送全解析，你不得不知的所有 Tips！">
+<meta property="og:url" content="http://yoursite.com/2016/08/31/5.iOS 推送全解析，你不得不知的所有 Tips！/index.html">
+<meta property="og:site_name" content="pikacode">
+<meta property="og:description" content="推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。
+从 iOS 10 新增的 UserNotifications Framework 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-6d81cf215f7f28cd.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2016-09-01T07:52:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 推送全解析，你不得不知的所有 Tips！">
+<meta name="twitter:description" content="推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。
+从 iOS 10 新增的 UserNotifications Framework 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1944178-6d81cf215f7f28cd.gif?imageMogr2/auto-orient/strip">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/31/5.iOS 推送全解析，你不得不知的所有 Tips！/"/>
+
+  <title> iOS 推送全解析，你不得不知的所有 Tips！ | pikacode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?452a3150fb96d1fa5609aa498de84a32";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">pikacode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">coding & running</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/me" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Me
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS 推送全解析，你不得不知的所有 Tips！
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-31T15:45:58+08:00" content="2016-08-31">
+              2016-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Push-Notification/" itemprop="url" rel="index">
+                    <span itemprop="name">Push Notification</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/31/5.iOS 推送全解析，你不得不知的所有 Tips！/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/5.iOS 推送全解析，你不得不知的所有 Tips！/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> <code>推送服务</code> 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 <code>打开率、使用率、存活率</code> 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。</p>
+<p>从 iOS 10 新增的 <code>UserNotifications Framework</code> 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以 Apple 官方的角度来看，也必然是相当重视推送服务对 App 的影响、以及对 Apple 生态圈长远发展的影响。</p>
+<p>本文旨在跟大家分享使用 iOS 推送的一些经验，欢迎互相交流，指出错漏之处。因为内容较多，有些地方可能稍显杂乱。（以下 <code>推送</code> 均指 <code>iOS 推送</code> ）</p>
+<h1 id="准备篇"><a href="#准备篇" class="headerlink" title="准备篇"></a>准备篇</h1><hr>
+<h4 id="Tip-1：推送-必须-购买-Apple-开发者账号，并使用特定的-推送证书"><a href="#Tip-1：推送-必须-购买-Apple-开发者账号，并使用特定的-推送证书" class="headerlink" title="Tip 1：推送 必须 购买 Apple 开发者账号，并使用特定的 推送证书"></a>Tip 1：推送 <code>必须</code> 购买 Apple 开发者账号，并使用特定的 <code>推送证书</code></h4><ul>
+<li>使用免费帐号不能推送</li>
+<li>那如果我们使用的是第三方推送服务（以下简称 <code>第三方</code> ）呢？比如「极光推送」。也必须购买开发者帐号。因为所有的第三方都会将推送请求发至 APNs（Apple Push Notification service 苹果推送通知服务），所有推送均是由 APNs 下发。</li>
+<li>如何注册及正确的配置证书，参考这里 <a href="http://docs.jiguang.cn/client/ios_tutorials/#ios_1" target="_blank" rel="external">iOS 证书设置指南</a></li>
+</ul>
+<h1 id="原理篇"><a href="#原理篇" class="headerlink" title="原理篇"></a>原理篇</h1><hr>
+<h4 id="Tip-2：推送本身是-iOS-系统的行为，所以在-App-没有运行的时候："><a href="#Tip-2：推送本身是-iOS-系统的行为，所以在-App-没有运行的时候：" class="headerlink" title="Tip 2：推送本身是 iOS 系统的行为，所以在 App 没有运行的时候："></a>Tip 2：推送本身是 iOS 系统的行为，所以在 App 没有运行的时候：</h4><ul>
+<li>仍然能够推送及接收（通知中心通知、顶部弹窗、刷新 App 右上角的小圆点即 <code>badge</code> [以下简称 <code>角标</code>] 等都会由系统来控制和展示）</li>
+<li>收到推送时，是无法在 App 的代码中获取到推送内容的。因为沙盒机制，此时 App 的任何代码都不可能被执行</li>
+</ul>
+<h4 id="Tip-3：手机向-APNs-注册推送服务"><a href="#Tip-3：手机向-APNs-注册推送服务" class="headerlink" title="Tip 3：手机向 APNs 注册推送服务"></a>Tip 3：手机向 APNs 注册推送服务</h4><ol>
+<li><p>在代码中注册推送服务：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#ifdef __IPHONE_8_0</span></div><div class="line"><span class="keyword">if</span> ([[<span class="built_in">UIApplication</span> sharedApplication] respondsToSelector:<span class="keyword">@selector</span>(registerUserNotificationSettings:)]) &#123;</div><div class="line">        <span class="built_in">UIUserNotificationSettings</span> *settings = [<span class="built_in">UIUserNotificationSettings</span> settingsForTypes:<span class="built_in">UIUserNotificationTypeBadge</span>|<span class="built_in">UIUserNotificationTypeSound</span>|<span class="built_in">UIUserNotificationTypeAlert</span> categories:<span class="literal">nil</span>];</div><div class="line">        [[<span class="built_in">UIApplication</span> sharedApplication] registerUserNotificationSettings:settings];</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">UIRemoteNotificationType</span> myTypes = <span class="built_in">UIRemoteNotificationTypeBadge</span> | <span class="built_in">UIRemoteNotificationTypeAlert</span> | <span class="built_in">UIRemoteNotificationTypeSound</span>;</div><div class="line">        [[<span class="built_in">UIApplication</span> sharedApplication] registerForRemoteNotificationTypes:myTypes];</div><div class="line">&#125;</div><div class="line"><span class="meta">#else</span></div><div class="line">        <span class="built_in">UIRemoteNotificationType</span> myTypes = <span class="built_in">UIRemoteNotificationTypeBadge</span> | <span class="built_in">UIRemoteNotificationTypeAlert</span> | <span class="built_in">UIRemoteNotificationTypeSound</span>;</div><div class="line">        [[<span class="built_in">UIApplication</span> sharedApplication] registerForRemoteNotificationTypes:myTypes];</div><div class="line"><span class="meta">#endif</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在第1次触发这段代码的时候，会有1个系统弹窗，询问你是否允许该 App 要给你推送信息。当你选择 <code>允许</code> 时，系统会打包 <code>App+手机唯一标识+证书</code> 信息发送至 APNs 服务器注册推送服务，APNs 系统会对该手机安装的该 App 是否有推送权限进行验证，所以必须要加入了 Apple Deveice 的手机，使用对应 App 的 <code>推送证书</code> 才能够成功的注册。</p>
+</li>
+<li><p>如果注册成功，则可以在 <code>AppDelegate.m</code> 的如下方法中获取到 <code>deviceToken</code>，它是对 <code>该手机+该App</code> 组合的一个唯一标识，当使用远程推送时，只需将推送消息发给指定的 <code>deviceToken</code> 即可使推送信息传达给指定手机的指定 App 上。因此如果你使用第三方，就需要在这个方法里将 <code>deviceToken</code> 传给第三方。（在 iOS 9 为了更好的保护用户隐私，会出现多次重复删除/安装 App 导致 <code>deviceToken</code> 不断变化的情况）</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didRegisterForRemoteNotificationsWithDeviceToken:(<span class="built_in">NSData</span> *)deviceToken &#123;  </div><div class="line">      [JPUSHService registerDeviceToken:deviceToken];<span class="comment">//将 deviceToken 传给极光推送</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>综上，注册及接收推送 <code>必须</code> 使用真机，<code>必须</code> 连网</p>
+</li>
+</ol>
+<h4 id="Tip-4：推送从-服务端-–-gt-App-代码-的过程"><a href="#Tip-4：推送从-服务端-–-gt-App-代码-的过程" class="headerlink" title="Tip 4：推送从 服务端 –&gt; App 代码 的过程"></a>Tip 4：推送从 服务端 –&gt; App 代码 的过程</h4><ol>
+<li>使用你们公司或第三方的服务端向 APNs 发送推送请求（包含 <code>推送内容+App描述+手机描述</code> ）</li>
+<li>APNs 接收并验证推送请求</li>
+<li>APNs 利用网络搜索并定位指定设备，下发推送</li>
+<li>手机收到推送，系统根据 App 状态进行处理</li>
+</ol>
+<ul>
+<li>前台收到：<ul>
+<li>系统会将推送内容传到 <code>didReceiveRemoteNotification</code></li>
+</ul>
+</li>
+<li>后台收到：<ul>
+<li>如果开启了 <code>Remote Notification</code> ，系统将推送传到 <code>didReceiveRemoteNotification:fetchCompletionHandler:</code>（见 Tip 5 - 后台推送）</li>
+<li>展示弹窗、推送中心、声音、角标</li>
+</ul>
+</li>
+<li>退出收到：<ul>
+<li>如果点击推送弹窗/通知中心而启动 App，系统将推送传到 <code>didFinishLaunchingWithOptions</code></li>
+<li>展示弹窗、推送中心、声音、角标</li>
+</ul>
+</li>
+</ul>
+<h1 id="推送内容篇"><a href="#推送内容篇" class="headerlink" title="推送内容篇"></a>推送内容篇</h1><hr>
+<h4 id="Tip-5：推送分为-本地-远程-2-种类型："><a href="#Tip-5：推送分为-本地-远程-2-种类型：" class="headerlink" title="Tip 5：推送分为 本地/远程 2 种类型："></a>Tip 5：推送分为 本地/远程 2 种类型：</h4><ul>
+<li>本地推送，可指定推送时间，在该时间准时弹出推送通知</li>
+<li><p>远程推送，分为 <code>普通推送/后台推送/静默推送</code> 3 种类型。存在延迟问题（由于 Tip 1 第 2 点，APNs 的不稳定及高峰时段的巨量请求所致）</p>
+<ul>
+<li>普通推送<ul>
+<li>就是我们在手机上平时见到的推送</li>
+<li>包含声音、弹窗、角标、自定义字段</li>
+<li>App <ul>
+<li>处于前台，可通过 <code>didReceiveRemoteNotification</code> 获取推送内容</li>
+<li>处于后台，无法获取推送内容</li>
+<li>处于退出，无法获取推送内容</li>
+<li>点击图标启动，无法获取推送内容</li>
+<li>点击推送弹窗启动，在 <code>didFinishLaunchingWithOptions</code> 获取推送内容</li>
+</ul>
+</li>
+<li>推送内容类似如下：<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">        "_j_msgid" = 200806057;//第三方附带的 id，用于在后台查询送达情况</div><div class="line">        aps =     &#123;</div><div class="line">          alert = "显示内容";</div><div class="line">          badge = 1;//App 角标，可推送 n、+n、-n 来实现角标的固定、增加、减少</div><div class="line">          sound = default;//推送声音，默认系统三全音，如需使用自己的声音，需要将声音文件拖拽&amp;拷贝至 Xcode 工程目录任意位置，并在推送时指定其文件名</div><div class="line">        &#125;;</div><div class="line">        key1 = value1;//自定义字段，可设置多组，用于处理内部逻辑</div><div class="line">        key2 = value2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>后台推送</p>
+<ul>
+<li>各种显示效果跟普通推送完全一样</li>
+<li>必须携带 <code>&quot;content-available&quot; = 1;</code></li>
+<li>必须携带 <code>alert</code>、<code>badge</code>、<code>sound</code> 中 <code>至少 1 个字段</code></li>
+<li>仅 iOS 7 以后支持</li>
+<li>必须在 Xcode 工程中 <code>TARGETS - Capabilities - Background Modes - Remote notifications</code> 开启该功能，具体可参照 <a href="http://docs.jiguang.cn/client/ios_tutorials/#ios-7-background-remote-notification" target="_blank" rel="external">iOS 7 Background Remote Notification</a></li>
+<li>App<ul>
+<li>处于前台，可通过 <code>didReceiveRemoteNotification</code> 获取推送内容</li>
+<li>处于后台，可通过<code>didReceiveRemoteNotification:fetchCompletionHandler:</code> 获取推送内容//获取情况中与 <code>普通推送</code> 的唯一不同点，<code>此时 iOS 系统允许开发者在 App 处于后台的情况下，执行一些代码，大概提供几分钟的时间，可以用来偷偷的刷新 UI、切换页面、下载更新包等等操作</code></li>
+<li>处于退出，无法获取推送内容</li>
+<li>点击图标启动，无法获取推送内容</li>
+<li>点击推送弹窗启动，在 <code>didFinishLaunchingWithOptions</code> 获取推送内容</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>推送内容类似如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">        "_j_msgid" = 2090737306;</div><div class="line">          aps =     &#123;</div><div class="line">          alert = "显示内容";</div><div class="line">          badge = 1;</div><div class="line">          "content-available" = 1;//必带字段</div><div class="line">          sound = default;</div><div class="line">        &#125;;</div><div class="line">        key1 = value1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>静默推送</p>
+<ul>
+<li>必须携带 <code>&quot;content-available&quot; = 1;</code>，因此静默<code>必然</code>是后台的</li>
+<li>必须不携带 <code>alert</code>、<code>badge</code>、<code>sound</code></li>
+<li>可携带自定义字段</li>
+<li>在用户完全不知情的情况下被 App <code>didReceiveRemoteNotification</code> 接收并处理（仅限 App 处于前台时，其他状态因没有任何提示，故无法被用户触发并被代码截获。）</li>
+<li>推送内容类似如下：<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">        "_j_msgid" = 3938587719;</div><div class="line">        aps =     &#123;</div><div class="line">          alert = "";</div><div class="line">          "content-available" = 1;//必带字段</div><div class="line">        &#125;;</div><div class="line">        key1 = value1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="别名-标签篇"><a href="#别名-标签篇" class="headerlink" title="别名/标签篇"></a>别名/标签篇</h1><hr>
+<h4 id="Tip-6：推送根据对象的不同可分为："><a href="#Tip-6：推送根据对象的不同可分为：" class="headerlink" title="Tip 6：推送根据对象的不同可分为："></a>Tip 6：推送根据对象的不同可分为：</h4><ul>
+<li>广播<ul>
+<li>无差别发送给所有用户</li>
+</ul>
+</li>
+<li>别名 <code>alias</code> 推送<ul>
+<li>1 个手机的 1 款 App 只能设置 1 个 alias（可修改）</li>
+<li>用于指定一些基本属性，如男/女性用户</li>
+<li>推送时可指定多个 alias 来下发同一内容</li>
+<li>仅指定 alias 的用户能够收到推送</li>
+</ul>
+</li>
+<li>标签 <code>tag</code> 推送<ul>
+<li>可设置多个、可增加、清空</li>
+<li>用于指定多样的属性，如 <code>1000</code>+<code>daily</code>+<code>discount</code> 可用于表示 <code>月消费超过 1k</code>、<code>喜欢购买日用品</code>、<code>偏好折扣商品</code> 的用户</li>
+<li>如果要 <code>删除</code>，需要在上次设置时，将设置的 tags 保存至 <code>NSUserDefaults</code>，本次剔除不需要的 tag 后，再重新设置</li>
+<li>推送时可指定多个 tag 来下发同一内容</li>
+<li>手机如果设置了推送指定的多个 tag 中 <code>任一个</code> tag，都能够收到推送消息。如指定 <code>1000</code>+<code>globe</code>+<code>original</code> （千元级消费者、<code>全球购</code>、原价），那么设置了 <code>100</code>+<code>globe</code>+<code>discount</code>（百元级消费者、<code>全球购</code>、折扣价）的用户可以收到该推送消息。</li>
+</ul>
+</li>
+<li><code>Registration ID</code> 推送<ul>
+<li>在 Tip 3 的第 3 步时将 <code>deviceToken</code> 提供给第三方之后，其服务器会自动生成的指向该手机的唯一 <code>id</code></li>
+<li>可在推送时指定多个 id 来下发消息</li>
+<li>可用于对 <code>核心用户</code>、<code>旗舰用户</code> 的 <code>精准推送</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="自定义消息篇"><a href="#自定义消息篇" class="headerlink" title="自定义消息篇"></a>自定义消息篇</h1><hr>
+<h4 id="Tip-7：自定义消息（以下简称-消息-）和推送的区别，消息："><a href="#Tip-7：自定义消息（以下简称-消息-）和推送的区别，消息：" class="headerlink" title="Tip 7：自定义消息（以下简称 消息 ）和推送的区别，消息："></a>Tip 7：自定义消息（以下简称 <code>消息</code> ）和推送的区别，消息：</h4><ul>
+<li>不需要 Apple 推送证书</li>
+<li>由第三方的服务器下发，而不是 APNs</li>
+<li>相比推送，更快速，几乎没有延迟，可用于 IM 消息的即时送达</li>
+<li>通过长连接技术下发消息，因此<ul>
+<li>手机必须启动并与第三方服务器建立连接</li>
+<li>如果手机启动立刻切至后台，很可能连接没有建立</li>
+<li>手机必须处于前台才能收到消息</li>
+<li>手机从后台切回前台，会自动重新建立连接，并收到离线消息</li>
+</ul>
+</li>
+<li>没有任何展示（弹窗、通知中心、角标、声音），因此可以：<ul>
+<li>自定义字段实现 UI 效果</li>
+<li>完全在静默情况下处理 App 内部逻辑</li>
+<li>使用一些 App Store 审核不会通过的功能，在审核时关闭功能，上架后通过接收消息，开启相关功能</li>
+</ul>
+</li>
+</ul>
+<h1 id="组合大招篇"><a href="#组合大招篇" class="headerlink" title="组合大招篇"></a>组合大招篇</h1><hr>
+<h4 id="Tip-8：tags-的组合技巧"><a href="#Tip-8：tags-的组合技巧" class="headerlink" title="Tip 8：tags 的组合技巧"></a>Tip 8：tags 的组合技巧</h4><ul>
+<li>见 Tip 5 - 标签 tag 推送</li>
+<li>可以通过 App 自己的服务端来统计分析用户行为，然后将指定的 tags 发送至手机，手机接收后再为用户打上对应的 tags</li>
+</ul>
+<h4 id="Tip-9：推送-消息的组合技巧"><a href="#Tip-9：推送-消息的组合技巧" class="headerlink" title="Tip 9：推送+消息的组合技巧"></a>Tip 9：推送+消息的组合技巧</h4><ul>
+<li>首先来看推送和消息各自的特性<ul>
+<li>推送<ul>
+<li>展示性：提醒作用</li>
+<li>延迟性：不稳定</li>
+<li>全局性：不论 App 处于哪种状态均能接收</li>
+<li>丢失性：因为各种网络原因，可能丢失。在客户端不能获取历史纪录。</li>
+</ul>
+</li>
+<li>消息<ul>
+<li>静默性：处理逻辑</li>
+<li>即时性：稳定</li>
+<li>前台性：只有处于前台才能收到</li>
+<li>存留性：必然送达。在客户端可以获取历史纪录。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>由于各自的特性都完全相反，因此 2 者结合使用是使得 App 性能最大化的必然选择：</p>
+<ul>
+<li><p>情景一：<br>QQ/微信 聊天。会同时下发一组 <code>推送+消息</code> ，如果用户没有启动 QQ，虽有延迟但必然能够先收到 <code>推送</code>，在受到推送的提醒之后，用户打开 App，此时收到了离线 <code>消息</code>，即时更新 UI，与好友即时的发送/接收消息。（在收到推送后，断网，然后启动 App，你会发现此时手机里并不会显示刚刚推送的内容，因为它是依靠拉取消息来刷新页面的，而不是不够稳定的推送）</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="附赠"><a href="#附赠" class="headerlink" title="附赠"></a>附赠</h1><hr>
+<p>极光推送 <code>所有 API</code> 调用 demo，download：<a href="https://github.com/pikacode/EBResources/blob/master/JPush%20demo/jpush-demo-wxc.zip" target="_blank" rel="external">JPush demo</a><br><img src="http://upload-images.jianshu.io/upload_images/1944178-6d81cf215f7f28cd.gif?imageMogr2/auto-orient/strip" alt="demo.gif"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果这篇文章对您有帮助，您可以请我喝一杯咖啡 :<span> </span>)</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>打赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward.png" alt="pikacode WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward.JPG" alt="pikacode Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Push-Notification/" rel="tag">#Push Notification</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/25/4.实现 iOS 前台时的推送弹窗效果/" rel="next" title="实现 iOS 前台时的推送弹窗效果">
+                <i class="fa fa-chevron-left"></i> 实现 iOS 前台时的推送弹窗效果
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/31/5.iOS 推送全解析，你不得不知的所有 Tips！/"
+           data-title="iOS 推送全解析，你不得不知的所有 Tips！" data-url="http://yoursite.com/2016/08/31/5.iOS 推送全解析，你不得不知的所有 Tips！/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pikacode" />
+          <p class="site-author-name" itemprop="name">pikacode</p>
+          <p class="site-description motion-element" itemprop="description">dreaming & advancing</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备篇"><span class="nav-number">1.</span> <span class="nav-text">准备篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-1：推送-必须-购买-Apple-开发者账号，并使用特定的-推送证书"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Tip 1：推送 必须 购买 Apple 开发者账号，并使用特定的 推送证书</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理篇"><span class="nav-number">2.</span> <span class="nav-text">原理篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-2：推送本身是-iOS-系统的行为，所以在-App-没有运行的时候："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Tip 2：推送本身是 iOS 系统的行为，所以在 App 没有运行的时候：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-3：手机向-APNs-注册推送服务"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">Tip 3：手机向 APNs 注册推送服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-4：推送从-服务端-–-gt-App-代码-的过程"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">Tip 4：推送从 服务端 –> App 代码 的过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推送内容篇"><span class="nav-number">3.</span> <span class="nav-text">推送内容篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-5：推送分为-本地-远程-2-种类型："><span class="nav-number">3.0.0.1.</span> <span class="nav-text">Tip 5：推送分为 本地/远程 2 种类型：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#别名-标签篇"><span class="nav-number">4.</span> <span class="nav-text">别名/标签篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-6：推送根据对象的不同可分为："><span class="nav-number">4.0.0.1.</span> <span class="nav-text">Tip 6：推送根据对象的不同可分为：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义消息篇"><span class="nav-number">5.</span> <span class="nav-text">自定义消息篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-7：自定义消息（以下简称-消息-）和推送的区别，消息："><span class="nav-number">5.0.0.1.</span> <span class="nav-text">Tip 7：自定义消息（以下简称 消息 ）和推送的区别，消息：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合大招篇"><span class="nav-number">6.</span> <span class="nav-text">组合大招篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-8：tags-的组合技巧"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">Tip 8：tags 的组合技巧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-9：推送-消息的组合技巧"><span class="nav-number">6.0.0.2.</span> <span class="nav-text">Tip 9：推送+消息的组合技巧</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附赠"><span class="nav-number">7.</span> <span class="nav-text">附赠</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikacode</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"pikacode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
