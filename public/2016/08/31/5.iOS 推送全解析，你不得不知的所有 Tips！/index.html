@@ -93,7 +93,7 @@
 <meta property="og:description" content="推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。
 从 iOS 10 新增的 UserNotifications Framework 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-6d81cf215f7f28cd.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2016-09-01T07:52:30.000Z">
+<meta property="og:updated_time" content="2016-09-05T02:04:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 推送全解析，你不得不知的所有 Tips！">
 <meta name="twitter:description" content="推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。
@@ -327,7 +327,7 @@
       
 
       
-        <p> <code>推送服务</code> 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 <code>打开率、使用率、存活率</code> 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。</p>
+        <p><code>推送服务</code> 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 <code>打开率、使用率、存活率</code> 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。</p>
 <p>从 iOS 10 新增的 <code>UserNotifications Framework</code> 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以 Apple 官方的角度来看，也必然是相当重视推送服务对 App 的影响、以及对 Apple 生态圈长远发展的影响。</p>
 <p>本文旨在跟大家分享使用 iOS 推送的一些经验，欢迎互相交流，指出错漏之处。因为内容较多，有些地方可能稍显杂乱。（以下 <code>推送</code> 均指 <code>iOS 推送</code> ）</p>
 <h1 id="准备篇"><a href="#准备篇" class="headerlink" title="准备篇"></a>准备篇</h1><hr>
@@ -384,9 +384,9 @@
 <li>就是我们在手机上平时见到的推送</li>
 <li>包含声音、弹窗、角标、自定义字段</li>
 <li>App <ul>
-<li>处于前台，可通过 <code>didReceiveRemoteNotification</code> 获取推送内容</li>
-<li>处于后台，无法获取推送内容</li>
-<li>处于退出，无法获取推送内容</li>
+<li>处于前台，<code>不会弹窗</code>，可通过 <code>didReceiveRemoteNotification</code> 获取推送内容（<a href="https://github.com/pikacode/EBForeNotification" target="_blank" rel="external">前台弹窗的方法看这里</a>）</li>
+<li>处于后台，<code>会弹窗</code>，无法获取推送内容</li>
+<li>处于退出，<code>会弹窗</code>，无法获取推送内容</li>
 <li>点击图标启动，无法获取推送内容</li>
 <li>点击推送弹窗启动，在 <code>didFinishLaunchingWithOptions</code> 获取推送内容</li>
 </ul>
@@ -429,6 +429,7 @@
 </li>
 </ul>
 <h1 id="别名-标签篇"><a href="#别名-标签篇" class="headerlink" title="别名/标签篇"></a>别名/标签篇</h1><hr>
+<p>别名、标签、Registration ID 均是第三方提供的用于分类推送的功能。</p>
 <h4 id="Tip-6：推送根据对象的不同可分为："><a href="#Tip-6：推送根据对象的不同可分为：" class="headerlink" title="Tip 6：推送根据对象的不同可分为："></a>Tip 6：推送根据对象的不同可分为：</h4><ul>
 <li>广播<ul>
 <li>无差别发送给所有用户</li>
@@ -498,11 +499,9 @@
 </li>
 </ul>
 </li>
-<li><p>由于各自的特性都完全相反，因此 2 者结合使用是使得 App 性能最大化的必然选择：</p>
-<ul>
-<li><p>情景一：<br>QQ/微信 聊天。会同时下发一组 <code>推送+消息</code> ，如果用户没有启动 QQ，虽有延迟但必然能够先收到 <code>推送</code>，在受到推送的提醒之后，用户打开 App，此时收到了离线 <code>消息</code>，即时更新 UI，与好友即时的发送/接收消息。（在收到推送后，断网，然后启动 App，你会发现此时手机里并不会显示刚刚推送的内容，因为它是依靠拉取消息来刷新页面的，而不是不够稳定的推送）</p>
-<p>​</p>
-</li>
+<li>由于各自的特性都完全相反，因此 2 者结合使用是使得 App 性能最大化的必然选择：<ul>
+<li>情景一：<br>QQ/微信 聊天。会同时下发一组 <code>推送+消息</code> ，如果用户没有启动 QQ，虽有延迟但必然能够先收到 <code>推送</code>，在受到推送的提醒之后，用户打开 App，此时收到了离线 <code>消息</code>，即时更新 UI，与好友即时的发送/接收消息。（在收到推送后，断网，然后启动 App，你会发现此时手机里并不会显示刚刚推送的内容，因为它是依靠拉取消息来刷新页面的，而不是不够稳定的推送）</li>
+<li>情景二：（期待您的补充…）</li>
 </ul>
 </li>
 </ul>
