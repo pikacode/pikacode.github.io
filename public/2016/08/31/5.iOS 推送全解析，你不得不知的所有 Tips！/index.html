@@ -84,21 +84,19 @@
 
 
 
-<meta name="description" content="推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。
-从 iOS 10 新增的 UserNotifications Framework 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以">
+<meta name="description" content="本文旨在对 iOS 推送（以下简称 推送）进行一个完整的剖析，如果你之前对推送一无所知，那么在你认真地阅读了全文后必将变成一个推送老手，你将会对其中的各种细节和原理有充分的理解。以下是 pikacode 使用 iOS 推送的一些经验，欢迎互相交流，指出错漏之处。
+推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 推送全解析，你不得不知的所有 Tips！">
 <meta property="og:url" content="http://yoursite.com/2016/08/31/5.iOS 推送全解析，你不得不知的所有 Tips！/index.html">
 <meta property="og:site_name" content="pikacode">
-<meta property="og:description" content="推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。
-从 iOS 10 新增的 UserNotifications Framework 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-6d81cf215f7f28cd.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2016-09-05T02:04:24.000Z">
+<meta property="og:description" content="本文旨在对 iOS 推送（以下简称 推送）进行一个完整的剖析，如果你之前对推送一无所知，那么在你认真地阅读了全文后必将变成一个推送老手，你将会对其中的各种细节和原理有充分的理解。以下是 pikacode 使用 iOS 推送的一些经验，欢迎互相交流，指出错漏之处。
+推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，">
+<meta property="og:updated_time" content="2016-09-06T09:45:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 推送全解析，你不得不知的所有 Tips！">
-<meta name="twitter:description" content="推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。
-从 iOS 10 新增的 UserNotifications Framework 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1944178-6d81cf215f7f28cd.gif?imageMogr2/auto-orient/strip">
+<meta name="twitter:description" content="本文旨在对 iOS 推送（以下简称 推送）进行一个完整的剖析，如果你之前对推送一无所知，那么在你认真地阅读了全文后必将变成一个推送老手，你将会对其中的各种细节和原理有充分的理解。以下是 pikacode 使用 iOS 推送的一些经验，欢迎互相交流，指出错漏之处。
+推送服务 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 打开率、使用率、存活率 。因此，">
 
 
 
@@ -327,9 +325,9 @@
       
 
       
-        <p><code>推送服务</code> 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 <code>打开率、使用率、存活率</code> 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。</p>
+        <p>本文旨在对 iOS 推送（以下简称 <code>推送</code>）进行一个完整的剖析，如果你之前对推送一无所知，那么在你认真地阅读了全文后必将变成一个推送老手，你将会对其中的各种细节和原理有充分的理解。以下是 pikacode 使用 iOS 推送的一些经验，欢迎互相交流，指出错漏之处。</p>
+<p><code>推送服务</code> 可以说是所有 App 的标配，不论是哪种类型的 App，推送都从很大程度上决定了 App 的 <code>打开率、使用率、存活率</code> 。因此，熟知并掌握推送原理及方法，对每一个开发者来说都是必备技能，对每一个依赖 App 的公司来说都至关重要。</p>
 <p>从 iOS 10 新增的 <code>UserNotifications Framework</code> 可以发现，Apple 整合了原有散乱的 API，并且增加了许多强大的功能。以 Apple 官方的角度来看，也必然是相当重视推送服务对 App 的影响、以及对 Apple 生态圈长远发展的影响。</p>
-<p>本文旨在跟大家分享使用 iOS 推送的一些经验，欢迎互相交流，指出错漏之处。因为内容较多，有些地方可能稍显杂乱。（以下 <code>推送</code> 均指 <code>iOS 推送</code> ）</p>
 <h1 id="准备篇"><a href="#准备篇" class="headerlink" title="准备篇"></a>准备篇</h1><hr>
 <h4 id="Tip-1：推送-必须-购买-Apple-开发者账号，并使用特定的-推送证书"><a href="#Tip-1：推送-必须-购买-Apple-开发者账号，并使用特定的-推送证书" class="headerlink" title="Tip 1：推送 必须 购买 Apple 开发者账号，并使用特定的 推送证书"></a>Tip 1：推送 <code>必须</code> 购买 Apple 开发者账号，并使用特定的 <code>推送证书</code></h4><ul>
 <li>使用免费帐号不能推送</li>
@@ -505,8 +503,6 @@
 </ul>
 </li>
 </ul>
-<h1 id="附赠"><a href="#附赠" class="headerlink" title="附赠"></a>附赠</h1><hr>
-<p>极光推送 <code>所有 API</code> 调用 demo，download：<a href="https://github.com/pikacode/EBResources/blob/master/JPush%20demo/jpush-demo-wxc.zip" target="_blank" rel="external">JPush demo</a><br><img src="http://upload-images.jianshu.io/upload_images/1944178-6d81cf215f7f28cd.gif?imageMogr2/auto-orient/strip" alt="demo.gif"></p>
 
       
     </div>
@@ -683,7 +679,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备篇"><span class="nav-number">1.</span> <span class="nav-text">准备篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-1：推送-必须-购买-Apple-开发者账号，并使用特定的-推送证书"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Tip 1：推送 必须 购买 Apple 开发者账号，并使用特定的 推送证书</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理篇"><span class="nav-number">2.</span> <span class="nav-text">原理篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-2：推送本身是-iOS-系统的行为，所以在-App-没有运行的时候："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Tip 2：推送本身是 iOS 系统的行为，所以在 App 没有运行的时候：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-3：手机向-APNs-注册推送服务"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">Tip 3：手机向 APNs 注册推送服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-4：推送从-服务端-–-gt-App-代码-的过程"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">Tip 4：推送从 服务端 –> App 代码 的过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推送内容篇"><span class="nav-number">3.</span> <span class="nav-text">推送内容篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-5：推送分为-本地-远程-2-种类型："><span class="nav-number">3.0.0.1.</span> <span class="nav-text">Tip 5：推送分为 本地/远程 2 种类型：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#别名-标签篇"><span class="nav-number">4.</span> <span class="nav-text">别名/标签篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-6：推送根据对象的不同可分为："><span class="nav-number">4.0.0.1.</span> <span class="nav-text">Tip 6：推送根据对象的不同可分为：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义消息篇"><span class="nav-number">5.</span> <span class="nav-text">自定义消息篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-7：自定义消息（以下简称-消息-）和推送的区别，消息："><span class="nav-number">5.0.0.1.</span> <span class="nav-text">Tip 7：自定义消息（以下简称 消息 ）和推送的区别，消息：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合大招篇"><span class="nav-number">6.</span> <span class="nav-text">组合大招篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-8：tags-的组合技巧"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">Tip 8：tags 的组合技巧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-9：推送-消息的组合技巧"><span class="nav-number">6.0.0.2.</span> <span class="nav-text">Tip 9：推送+消息的组合技巧</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附赠"><span class="nav-number">7.</span> <span class="nav-text">附赠</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备篇"><span class="nav-number">1.</span> <span class="nav-text">准备篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-1：推送-必须-购买-Apple-开发者账号，并使用特定的-推送证书"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Tip 1：推送 必须 购买 Apple 开发者账号，并使用特定的 推送证书</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理篇"><span class="nav-number">2.</span> <span class="nav-text">原理篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-2：推送本身是-iOS-系统的行为，所以在-App-没有运行的时候："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Tip 2：推送本身是 iOS 系统的行为，所以在 App 没有运行的时候：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-3：手机向-APNs-注册推送服务"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">Tip 3：手机向 APNs 注册推送服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-4：推送从-服务端-–-gt-App-代码-的过程"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">Tip 4：推送从 服务端 –> App 代码 的过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推送内容篇"><span class="nav-number">3.</span> <span class="nav-text">推送内容篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-5：推送分为-本地-远程-2-种类型："><span class="nav-number">3.0.0.1.</span> <span class="nav-text">Tip 5：推送分为 本地/远程 2 种类型：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#别名-标签篇"><span class="nav-number">4.</span> <span class="nav-text">别名/标签篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-6：推送根据对象的不同可分为："><span class="nav-number">4.0.0.1.</span> <span class="nav-text">Tip 6：推送根据对象的不同可分为：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义消息篇"><span class="nav-number">5.</span> <span class="nav-text">自定义消息篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-7：自定义消息（以下简称-消息-）和推送的区别，消息："><span class="nav-number">5.0.0.1.</span> <span class="nav-text">Tip 7：自定义消息（以下简称 消息 ）和推送的区别，消息：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合大招篇"><span class="nav-number">6.</span> <span class="nav-text">组合大招篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-8：tags-的组合技巧"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">Tip 8：tags 的组合技巧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tip-9：推送-消息的组合技巧"><span class="nav-number">6.0.0.2.</span> <span class="nav-text">Tip 9：推送+消息的组合技巧</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
