@@ -1,0 +1,833 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IM,JPush," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="现在很多 App 都需要集成 IM 功能，今天就为大家分享一下集成 IM 基本功能的步骤。本文内容以 JMessage 为例。极光 IM ( JMessage ) = 极光推送 ( JPush ) + IM，本篇只论述其中的 IM 部分，为大家快速集成 IM 功能提供一个简明的范例。
+我们先来看一下 IM 的基本功能与本文内容的对应关系：
+line 0：准备工作
+
+下载 SDK
+集成 SDK
+
+l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20 行代码极速为 App 加上聊天功能">
+<meta property="og:url" content="http://yoursite.com/2016/12/09/10.20 行代码极速为 App 加上聊天功能/index.html">
+<meta property="og:site_name" content="pikacode">
+<meta property="og:description" content="现在很多 App 都需要集成 IM 功能，今天就为大家分享一下集成 IM 基本功能的步骤。本文内容以 JMessage 为例。极光 IM ( JMessage ) = 极光推送 ( JPush ) + IM，本篇只论述其中的 IM 部分，为大家快速集成 IM 功能提供一个简明的范例。
+我们先来看一下 IM 的基本功能与本文内容的对应关系：
+line 0：准备工作
+
+下载 SDK
+集成 SDK
+
+l">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-d97bf9be09cdb788.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-05-15T11:18:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="20 行代码极速为 App 加上聊天功能">
+<meta name="twitter:description" content="现在很多 App 都需要集成 IM 功能，今天就为大家分享一下集成 IM 基本功能的步骤。本文内容以 JMessage 为例。极光 IM ( JMessage ) = 极光推送 ( JPush ) + IM，本篇只论述其中的 IM 部分，为大家快速集成 IM 功能提供一个简明的范例。
+我们先来看一下 IM 的基本功能与本文内容的对应关系：
+line 0：准备工作
+
+下载 SDK
+集成 SDK
+
+l">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1944178-d97bf9be09cdb788.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/09/10.20 行代码极速为 App 加上聊天功能/"/>
+
+  <title> 20 行代码极速为 App 加上聊天功能 | pikacode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?452a3150fb96d1fa5609aa498de84a32";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">pikacode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">coding & running</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/me" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Me
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                20 行代码极速为 App 加上聊天功能
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-09T14:13:00+08:00" content="2016-12-09">
+              2016-12-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IM/" itemprop="url" rel="index">
+                    <span itemprop="name">IM</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IM/JPush/" itemprop="url" rel="index">
+                    <span itemprop="name">JPush</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/09/10.20 行代码极速为 App 加上聊天功能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/09/10.20 行代码极速为 App 加上聊天功能/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>现在很多 App 都需要集成 IM 功能，今天就为大家分享一下集成 IM 基本功能的步骤。本文内容以 JMessage 为例。<br><a href="https://docs.jiguang.cn/jmessage/client/im_sdk_ios/" target="_blank" rel="external">极光 IM ( JMessage )</a> = <a href="https://docs.jiguang.cn/jpush/guideline/intro/" target="_blank" rel="external">极光推送 ( JPush )</a> + IM，本篇只论述其中的 IM 部分，为大家快速集成 IM 功能提供一个简明的范例。</p>
+<p>我们先来看一下 IM 的基本功能与本文内容的对应关系：<br><img src="http://upload-images.jianshu.io/upload_images/1944178-d97bf9be09cdb788.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="line-0：准备工作"><a href="#line-0：准备工作" class="headerlink" title="line 0：准备工作"></a>line 0：准备工作</h3><hr>
+<ul>
+<li><a href="https://docs.jiguang.cn/jmessage/resources/" target="_blank" rel="external">下载 SDK</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_guide/#_4" target="_blank" rel="external">集成 SDK</a></li>
+</ul>
+<h3 id="line-1：引入头文件"><a href="#line-1：引入头文件" class="headerlink" title="line 1：引入头文件"></a>line 1：引入头文件</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;JMessage/JMessage.h&gt;</span></span></div></pre></td></tr></table></figure>
+<p>JMessage 核心头文件。这是唯一需要导入到你的项目里的头文件，它引用了内部需要用到的头文件。</p>
+<h3 id="line-2：开启事件监听"><a href="#line-2：开启事件监听" class="headerlink" title="line 2：开启事件监听"></a>line 2：开启事件监听</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[JMessage addDelegate:<span class="keyword">self</span> withConversation:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<ul>
+<li>用于监听各种全局事件</li>
+<li>建议写在 line 3 之前</li>
+<li>Parameters：</li>
+<li>delegate：填入对象需要实现 <jmessagedelegate></jmessagedelegate></li>
+<li>conversation：nil 监听所有通知，非 nil 监听指定会话</li>
+</ul>
+<h3 id="line-3：启动-SDK"><a href="#line-3：启动-SDK" class="headerlink" title="line 3：启动 SDK"></a>line 3：启动 SDK</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[JMessage setupJMessage:launchOptions</div><div class="line">                 appKey:<span class="string">@"your appkey"</span></div><div class="line">                channel:<span class="string">@"channel name"</span></div><div class="line">       apsForProduction:<span class="literal">NO</span></div><div class="line">               category:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<ul>
+<li>建议写在 <code>application:didFinishLaunchingWithOptions:</code></li>
+<li>Parameters：</li>
+<li>launchOptions：启动函数的参数 launchingOption</li>
+<li>appKey：获取方式 line 0 - 集成 SDK</li>
+<li>channel：应用的渠道名</li>
+<li>isProduction：是否为生产模式</li>
+<li>category：iOS8 新增通知快捷按钮参数</li>
+</ul>
+<h3 id="line-4：注册新用户"><a href="#line-4：注册新用户" class="headerlink" title="line 4：注册新用户"></a>line 4：注册新用户</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[JMSGUser registerWithUsername:<span class="string">@"username"</span> </div><div class="line">                      password:<span class="string">@"password"</span></div><div class="line">             completionHandler:^(<span class="keyword">id</span> resultObject, <span class="built_in">NSError</span> *error) &#123;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>Parameters：</p>
+<ul>
+<li>username：用户名</li>
+<li>password：密码</li>
+<li>handler：error 为 nil 时调用成功（下均同）</li>
+</ul>
+<h3 id="line-5：登录"><a href="#line-5：登录" class="headerlink" title="line 5：登录"></a>line 5：登录</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[JMSGUser loginWithUsername:<span class="string">@"username"</span> </div><div class="line">                   password:<span class="string">@"password"</span> </div><div class="line">          completionHandler:^(<span class="keyword">id</span> resultObject, <span class="built_in">NSError</span> *error) &#123;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h3 id="line-6：创建单聊会话"><a href="#line-6：创建单聊会话" class="headerlink" title="line 6：创建单聊会话"></a>line 6：创建单聊会话</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[JMSGConversation createSingleConversationWithUsername:<span class="string">@"username"</span> </div><div class="line">                                     completionHandler:^(<span class="keyword">id</span> resultObject, <span class="built_in">NSError</span> *error) &#123;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<ul>
+<li>会话是整个 IM 的核心，所有的消息行为都基于「会话」</li>
+<li>该会话不存在会返回新会话，存在会返回已有会话</li>
+<li>Parameters：</li>
+<li>handler：正常返回时 resultObject 为 <a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html" target="_blank" rel="external">JMSGConversation</a> 会话对象</li>
+<li>((JMSGConversation*)resultObject).target：会话的对方目标：<ul>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGUser.html" target="_blank" rel="external">用户对象 JMSGUser</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGGroup.html" target="_blank" rel="external">群组对象 JMSGGroup</a></li>
+</ul>
+</li>
+<li>Related APIs：</li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html#//api/name/createSingleConversationWithUsername:appKey:completionHandler:" target="_blank" rel="external">创建单聊跨应用会话</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html#//api/name/createGroupConversationWithGroupId:completionHandler:" target="_blank" rel="external">创建群聊会话</a></li>
+</ul>
+<h3 id="line-7：发送文本消息"><a href="#line-7：发送文本消息" class="headerlink" title="line 7：发送文本消息"></a>line 7：发送文本消息</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[(JMSGConversation*)resultObject sendTextMessage:<span class="string">@"text"</span>];</div></pre></td></tr></table></figure>
+<ul>
+<li>转型 line 6 - handler 中的 <code>resultObject</code>，并发送文本消息</li>
+<li>Related APIs：</li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html#//api/name/sendImageMessage:" target="_blank" rel="external">发送图片消息</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html#//api/name/sendVoiceMessage:duration:" target="_blank" rel="external">发送语音消息</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html#//api/name/sendFileMessage:fileName:" target="_blank" rel="external">发送文件消息</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html#//api/name/sendLocationMessage:longitude:scale:address:" target="_blank" rel="external">发送地理位置消息</a></li>
+</ul>
+<h3 id="line-8-12：接收文本消息"><a href="#line-8-12：接收文本消息" class="headerlink" title="line 8~12：接收文本消息"></a>line 8~12：接收文本消息</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)onReceiveMessage:(JMSGMessage *)message error:(<span class="built_in">NSError</span> *)error&#123;</div><div class="line">    <span class="keyword">if</span> (message.content == kJMSGContentTypeText) &#123;</div><div class="line">        <span class="built_in">NSString</span> *text = ((JMSGTextContent *)message.content).text;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在 line 2 中添加了 <jmessagedelegate> 的类，可以监听该方法</jmessagedelegate></li>
+<li>当 App 收到（文本、图片等各类）消息时该方法被调用</li>
+<li>根据 <code>message.contentType</code> 判断<a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Constants/JMSGContentType.html" target="_blank" rel="external">消息类型</a></li>
+<li>转型 <code>message.content</code> 为<a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGTextContent.html" target="_blank" rel="external">文本内容</a>并获取文本 <code>text</code> 以展示 UI</li>
+<li>Related APIs：</li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGImageContent.html" target="_blank" rel="external">图片内容</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGVoiceContent.html" target="_blank" rel="external">声音内容</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGFileContent.html" target="_blank" rel="external">文件内容</a></li>
+</ul>
+<h3 id="line-13：获取历史消息"><a href="#line-13：获取历史消息" class="headerlink" title="line 13：获取历史消息"></a>line 13：获取历史消息</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *messages = [(JMSGConversation*)resultObject messageArrayFromNewestWithOffset:<span class="literal">nil</span> limit:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<ul>
+<li>利用 line 6 中的 <code>resultObject</code> 转型后获取</li>
+<li>单聊群聊均可</li>
+<li>Parameters：</li>
+<li>返回 NSArray&lt;<a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGMessage.html" target="_blank" rel="external">JMSGMessage</a>* &gt;</li>
+<li>offset：起点。nil 从最新一条开始，n 从最新第 n 条往历史追查</li>
+<li>limit：数量。nil 表全部</li>
+</ul>
+<h3 id="line-14-15：清零单聊未读消息数"><a href="#line-14-15：清零单聊未读消息数" class="headerlink" title="line 14~15：清零单聊未读消息数"></a>line 14~15：清零单聊未读消息数</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">JMSGConversation *conversation = [JMSGConversation singleConversationWithUsername:username];</div><div class="line">[conversation clearUnreadCount];</div></pre></td></tr></table></figure>
+<ul>
+<li>Related APIs：</li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html#//api/name/groupConversationWithGroupId:" target="_blank" rel="external">清零群聊</a></li>
+</ul>
+<h3 id="line-16：获取会话列表"><a href="#line-16：获取会话列表" class="headerlink" title="line 16：获取会话列表"></a>line 16：获取会话列表</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[JMSGConversation allConversations:^(<span class="keyword">id</span> resultObject, <span class="built_in">NSError</span> *error) &#123;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<ul>
+<li>批量获取所有会话列表</li>
+<li>根据<a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Constants/JMSGConversationType.html" target="_blank" rel="external">会话类型</a>判断是单聊还是群聊</li>
+<li>Parameters：</li>
+<li>resultObject：NSArray<jmsgconversation*></jmsgconversation*></li>
+</ul>
+<h3 id="line-17：删除单聊会话"><a href="#line-17：删除单聊会话" class="headerlink" title="line 17：删除单聊会话"></a>line 17：删除单聊会话</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">BOOL</span> success = [JMSGConversation deleteSingleConversationWithUsername:username];</div></pre></td></tr></table></figure>
+<ul>
+<li>Related APIs：</li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html#//api/name/deleteSingleConversationWithUsername:appKey:" target="_blank" rel="external">删除单聊跨应用会话</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGConversation.html#//api/name/deleteGroupConversationWithGroupId:" target="_blank" rel="external">删除群聊会话</a></li>
+</ul>
+<h3 id="line-18：批量获取用户详情"><a href="#line-18：批量获取用户详情" class="headerlink" title="line 18：批量获取用户详情"></a>line 18：批量获取用户详情</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[JMSGUser userInfoArrayWithUsernameArray:nameArr completionHandler:^(<span class="keyword">id</span> resultObject, <span class="built_in">NSError</span> *error) &#123;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<ul>
+<li>Parameters：</li>
+<li>nameArray：NSArray<nsstring*></nsstring*></li>
+<li>resultObject：NSArray<jmsguser*></jmsguser*></li>
+<li>Related APIs：</li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGUser.html#//api/name/myInfo" target="_blank" rel="external">获取本用户详情</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGUser.html#//api/name/updateMyInfoWithParameter:userFieldType:completionHandler:" target="_blank" rel="external">修改本用户详情</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGUser.html#//api/name/updateMyPasswordWithNewPassword:oldPassword:completionHandler:" target="_blank" rel="external">修改本用户密码</a></li>
+</ul>
+<h3 id="line-19：创建群组及相关操作"><a href="#line-19：创建群组及相关操作" class="headerlink" title="line 19：创建群组及相关操作"></a>line 19：创建群组及相关操作</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[JMSGGroup createGroupWithName:name desc:desc memberArray:members completionHandler:^(<span class="keyword">id</span> resultObject, <span class="built_in">NSError</span> *error) &#123;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<ul>
+<li>Parameters：</li>
+<li>name：群名</li>
+<li>desc：群组描述</li>
+<li>memberArray：成员列表，NSArray<nsstring*></nsstring*></li>
+<li>resultObject：<a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGGroup.html" target="_blank" rel="external">群组对象 JMSGGroup</a></li>
+<li>Related APIs：</li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGGroup.html#//api/name/myGroupArray:" target="_blank" rel="external">获取我的群组列表</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGGroup.html#//api/name/memberArray" target="_blank" rel="external">获取群组成员列表</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGGroup.html#//api/name/addMembersWithUsernameArray:completionHandler:" target="_blank" rel="external">添加成员</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGGroup.html#//api/name/removeMembersWithUsernameArray:completionHandler:" target="_blank" rel="external">删除成员</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGGroup.html#//api/name/exit:" target="_blank" rel="external">退群</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGGroup.html#//api/name/groupInfoWithGroupId:completionHandler:" target="_blank" rel="external">获取群组详情</a></li>
+<li><a href="https://docs.jiguang.cn/jmessage/client/jmessage_ios_appledoc_html/Classes/JMSGGroup.html#//api/name/updateGroupInfoWithGroupId:name:desc:completionHandler:" target="_blank" rel="external">修改群组详情</a></li>
+</ul>
+<h3 id="line-20：退出登录"><a href="#line-20：退出登录" class="headerlink" title="line 20：退出登录"></a>line 20：退出登录</h3><hr>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[JMSGUser logout:^(<span class="keyword">id</span> resultObject, <span class="built_in">NSError</span> *error) &#123;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h6 id="至此一个-IM-的各种基本操作就完了，是不是"><a href="#至此一个-IM-的各种基本操作就完了，是不是" class="headerlink" title="至此一个 IM 的各种基本操作就完了，是不是"></a>至此一个 IM 的各种基本操作就完了，是不是</h6><h1 id="很简单？"><a href="#很简单？" class="headerlink" title="很简单？"></a>很简单？</h1>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果这篇文章对您有帮助，您可以请我喝一杯咖啡 :<span> </span>)</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>打赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward.png" alt="pikacode WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward.JPG" alt="pikacode Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IM/" rel="tag">#IM</a>
+          
+            <a href="/tags/JPush/" rel="tag">#JPush</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/01/9.玩转 iOS 10 推送 —— UserNotifications Framework（合集）/" rel="next" title="玩转 iOS 10 推送 —— UserNotifications Framework（合集）">
+                <i class="fa fa-chevron-left"></i> 玩转 iOS 10 推送 —— UserNotifications Framework（合集）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/15/11.iOS 轻松使用 App 数据统计/" rel="prev" title="iOS 轻松使用 App 数据统计">
+                iOS 轻松使用 App 数据统计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/09/10.20 行代码极速为 App 加上聊天功能/"
+           data-title="20 行代码极速为 App 加上聊天功能" data-url="http://yoursite.com/2016/12/09/10.20 行代码极速为 App 加上聊天功能/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pikacode" />
+          <p class="site-author-name" itemprop="name">pikacode</p>
+          <p class="site-description motion-element" itemprop="description">dreaming & advancing</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#line-0：准备工作"><span class="nav-number">1.</span> <span class="nav-text">line 0：准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-1：引入头文件"><span class="nav-number">2.</span> <span class="nav-text">line 1：引入头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-2：开启事件监听"><span class="nav-number">3.</span> <span class="nav-text">line 2：开启事件监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-3：启动-SDK"><span class="nav-number">4.</span> <span class="nav-text">line 3：启动 SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-4：注册新用户"><span class="nav-number">5.</span> <span class="nav-text">line 4：注册新用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-5：登录"><span class="nav-number">6.</span> <span class="nav-text">line 5：登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-6：创建单聊会话"><span class="nav-number">7.</span> <span class="nav-text">line 6：创建单聊会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-7：发送文本消息"><span class="nav-number">8.</span> <span class="nav-text">line 7：发送文本消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-8-12：接收文本消息"><span class="nav-number">9.</span> <span class="nav-text">line 8~12：接收文本消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-13：获取历史消息"><span class="nav-number">10.</span> <span class="nav-text">line 13：获取历史消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-14-15：清零单聊未读消息数"><span class="nav-number">11.</span> <span class="nav-text">line 14~15：清零单聊未读消息数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-16：获取会话列表"><span class="nav-number">12.</span> <span class="nav-text">line 16：获取会话列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-17：删除单聊会话"><span class="nav-number">13.</span> <span class="nav-text">line 17：删除单聊会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-18：批量获取用户详情"><span class="nav-number">14.</span> <span class="nav-text">line 18：批量获取用户详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-19：创建群组及相关操作"><span class="nav-number">15.</span> <span class="nav-text">line 19：创建群组及相关操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line-20：退出登录"><span class="nav-number">16.</span> <span class="nav-text">line 20：退出登录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#至此一个-IM-的各种基本操作就完了，是不是"><span class="nav-number">16.0.0.1.</span> <span class="nav-text">至此一个 IM 的各种基本操作就完了，是不是</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#很简单？"><span class="nav-number"></span> <span class="nav-text">很简单？</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikacode</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"pikacode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

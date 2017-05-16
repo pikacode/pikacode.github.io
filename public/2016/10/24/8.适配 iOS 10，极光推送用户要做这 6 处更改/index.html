@@ -1,0 +1,712 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JPush,iOS 10," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Change 1：升级至 Xcode 8建议尽快升级。使用 iOS 10 SDK 需要 Xcode 8 的支持。iOS 10 推出两周内，安装率就已经达到 48.16%，不升级 Xcode 8 并适配 iOS 10 意味着你现在可能已经损失了 50% 的高端客户，而且在未来的几个月内或许会陆续损失 90% 以上的客户。
+Change 2：Xcode 8 推送基本配置
+首先跟以前版本的 Xcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="适配 iOS 10，极光推送用户要做这 6 处更改">
+<meta property="og:url" content="http://yoursite.com/2016/10/24/8.适配 iOS 10，极光推送用户要做这 6 处更改/index.html">
+<meta property="og:site_name" content="pikacode">
+<meta property="og:description" content="Change 1：升级至 Xcode 8建议尽快升级。使用 iOS 10 SDK 需要 Xcode 8 的支持。iOS 10 推出两周内，安装率就已经达到 48.16%，不升级 Xcode 8 并适配 iOS 10 意味着你现在可能已经损失了 50% 的高端客户，而且在未来的几个月内或许会陆续损失 90% 以上的客户。
+Change 2：Xcode 8 推送基本配置
+首先跟以前版本的 Xcode">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-2aff9b4f15730d60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-c8198caf6fbfaa61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-e8a849a19009b264.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-4c1e7ae1c5744115.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-afa4d3c4f46bb01c.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2017-05-15T11:18:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="适配 iOS 10，极光推送用户要做这 6 处更改">
+<meta name="twitter:description" content="Change 1：升级至 Xcode 8建议尽快升级。使用 iOS 10 SDK 需要 Xcode 8 的支持。iOS 10 推出两周内，安装率就已经达到 48.16%，不升级 Xcode 8 并适配 iOS 10 意味着你现在可能已经损失了 50% 的高端客户，而且在未来的几个月内或许会陆续损失 90% 以上的客户。
+Change 2：Xcode 8 推送基本配置
+首先跟以前版本的 Xcode">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1944178-2aff9b4f15730d60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/24/8.适配 iOS 10，极光推送用户要做这 6 处更改/"/>
+
+  <title> 适配 iOS 10，极光推送用户要做这 6 处更改 | pikacode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?452a3150fb96d1fa5609aa498de84a32";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">pikacode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">coding & running</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/me" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Me
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                适配 iOS 10，极光推送用户要做这 6 处更改
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-24T16:24:00+08:00" content="2016-10-24">
+              2016-10-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JPush/" itemprop="url" rel="index">
+                    <span itemprop="name">JPush</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JPush/iOS-10/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS 10</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/24/8.适配 iOS 10，极光推送用户要做这 6 处更改/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/24/8.适配 iOS 10，极光推送用户要做这 6 处更改/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Change-1：升级至-Xcode-8"><a href="#Change-1：升级至-Xcode-8" class="headerlink" title="Change 1：升级至 Xcode 8"></a>Change 1：升级至 Xcode 8</h4><p>建议尽快升级。使用 iOS 10 SDK 需要 Xcode 8 的支持。iOS 10 推出两周内，安装率就已经达到 48.16%，不升级 Xcode 8 并适配 iOS 10 意味着你现在可能已经损失了 50% 的高端客户，而且在未来的几个月内或许会陆续损失 90% 以上的客户。</p>
+<h4 id="Change-2：Xcode-8-推送基本配置"><a href="#Change-2：Xcode-8-推送基本配置" class="headerlink" title="Change 2：Xcode 8 推送基本配置"></a>Change 2：Xcode 8 推送基本配置</h4><ol>
+<li>首先跟以前版本的 Xcode 没什么区别。下载自己在 Apple Developer 官网申请好的证书、描述文件（<a href="https://docs.jiguang.cn/jpush/client/iOS/ios_cer_guide/" target="_blank" rel="external">iOS 证书 设置指南
+</a>）。填写 Bundle Identifier、选择开发者，正确配置后，这里不会有任何异常警告：<br><img src="http://upload-images.jianshu.io/upload_images/1944178-2aff9b4f15730d60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>Target - your target - Capabilities - 开启 Push Notifications<br>证书如果配置正确，这里会自动打勾。系统会在工程目录里生成一个 <code>projectName.entitlements</code> 文件，请不要随意删除、修改：<br><img src="http://upload-images.jianshu.io/upload_images/1944178-c8198caf6fbfaa61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>Target - your target - Capabilities - 开启 Background Modes - 勾选最后一项 Remote Notifications（这是 iOS 7 以后支持的 App 在后台收到推送时能够让开发者执行一段代码的功能，建议开启 <a href="https://docs.jiguang.cn/jpush/client/iOS/ios_new_fetures/#ios-7-background-remote-notification" target="_blank" rel="external">[iOS 7 Background Remote Notification]</a>、<a href="http://www.jianshu.com/p/e9c313df746f" target="_blank" rel="external">[iOS 推送全解析 - Tip5：后台推送/静默推送]</a>）</li>
+</ol>
+<h4 id="Change-3：更新-JPush-iOS-SDK-gt-v2-1-9"><a href="#Change-3：更新-JPush-iOS-SDK-gt-v2-1-9" class="headerlink" title="Change 3：更新 JPush iOS SDK &gt;= v2.1.9"></a>Change 3：更新 JPush iOS SDK &gt;= v2.1.9</h4><ol>
+<li><a href="https://docs.jiguang.cn/jpush/resources/" target="_blank" rel="external">资源下载</a></li>
+<li>替换工程中原有的 JPush SDK 文件为 <code>JPUSHService.h</code>、<code>jpush-ios-2.1.9.a</code>。</li>
+<li>Target - your target - Build Phases - Link Binary With Libraries  - 引入一个新的库 <code>UserNotifications.framework</code><br><img src="http://upload-images.jianshu.io/upload_images/1944178-e8a849a19009b264.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ol>
+<h4 id="Change-4：更改注册推送代码"><a href="#Change-4：更改注册推送代码" class="headerlink" title="Change 4：更改注册推送代码"></a>Change 4：更改注册推送代码</h4><p>原先向系统注册并请求推送权限的代码是酱紫的，根据 iOS 8 以后及以前分两步：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> ([[<span class="built_in">UIDevice</span> currentDevice].systemVersion floatValue] &gt;= <span class="number">8.0</span>) &#123;</div><div class="line">        <span class="comment">//可以添加自定义categories</span></div><div class="line">        [JPUSHService registerForRemoteNotificationTypes:(<span class="built_in">UIUserNotificationTypeBadge</span> |</div><div class="line">                                                          <span class="built_in">UIUserNotificationTypeSound</span> |</div><div class="line">                                                          <span class="built_in">UIUserNotificationTypeAlert</span>)</div><div class="line">                                              categories:<span class="literal">nil</span>];</div><div class="line">    &#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">//categories 必须为nil</span></div><div class="line">        [JPUSHService registerForRemoteNotificationTypes:(<span class="built_in">UIRemoteNotificationTypeBadge</span> |</div><div class="line">                                                          <span class="built_in">UIRemoteNotificationTypeSound</span> |</div><div class="line">                                                          <span class="built_in">UIRemoteNotificationTypeAlert</span>)</div><div class="line">                                              categories:<span class="literal">nil</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>现在在前面加了一段 iOS 10 的注册方法：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Required</span></div><div class="line"><span class="keyword">if</span> ([[<span class="built_in">UIDevice</span> currentDevice].systemVersion floatValue] &gt;= <span class="number">10.0</span>) &#123;</div><div class="line">        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];</div><div class="line">        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;</div><div class="line">        [JPUSHService registerForRemoteNotificationConfig:entity delegate:<span class="keyword">self</span>];</div><div class="line">    &#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> ([[<span class="built_in">UIDevice</span> currentDevice].systemVersion floatValue] &gt;= <span class="number">8.0</span>) &#123;</div><div class="line">        <span class="comment">//可以添加自定义categories</span></div><div class="line">        [JPUSHService registerForRemoteNotificationTypes:(<span class="built_in">UIUserNotificationTypeBadge</span> |</div><div class="line">                                                          <span class="built_in">UIUserNotificationTypeSound</span> |</div><div class="line">                                                          <span class="built_in">UIUserNotificationTypeAlert</span>)</div><div class="line">                                              categories:<span class="literal">nil</span>];</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">//categories 必须为nil</span></div><div class="line">        [JPUSHService registerForRemoteNotificationTypes:(<span class="built_in">UIRemoteNotificationTypeBadge</span> |</div><div class="line">                                                          <span class="built_in">UIRemoteNotificationTypeSound</span> |</div><div class="line">                                                          <span class="built_in">UIRemoteNotificationTypeAlert</span>)</div><div class="line">                                              categories:<span class="literal">nil</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="Change-5：实现代理-方法"><a href="#Change-5：实现代理-方法" class="headerlink" title="Change 5：实现代理  方法"></a>Change 5：实现代理 <jpushregisterdelegate> 方法</jpushregisterdelegate></h4><p>在 Change 4 中的该行代码处会报警告：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[JPUSHService registerForRemoteNotificationConfig:entity delegate:<span class="keyword">self</span>];</div></pre></td></tr></table></figure></p>
+<p>其中的 self 类必须实现 <jpushregisterdelegate>，其是对 iOS 10 接收推送并处理的代理 <unusernotificationcenterdelegate> 的封装。</unusernotificationcenterdelegate></jpushregisterdelegate></p>
+<p>实现 <jpushregisterdelegate> 的两个方法：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">NSInteger</span>))completionHandler &#123;</div><div class="line">  <span class="comment">// Required</span></div><div class="line">  <span class="built_in">NSDictionary</span> * userInfo = notification.request.content.userInfo;</div><div class="line">  <span class="keyword">if</span>([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger <span class="keyword">class</span>]]) &#123;</div><div class="line">    [JPUSHService handleRemoteNotification:userInfo];</div><div class="line">  &#125;</div><div class="line">  completionHandler(UNNotificationPresentationOptionAlert); <span class="comment">// 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(<span class="keyword">void</span> (^)())completionHandler &#123;</div><div class="line">  <span class="comment">// Required</span></div><div class="line">  <span class="built_in">NSDictionary</span> * userInfo = response.notification.request.content.userInfo;</div><div class="line">  <span class="keyword">if</span>([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger <span class="keyword">class</span>]]) &#123;</div><div class="line">    [JPUSHService handleRemoteNotification:userInfo];</div><div class="line">  &#125;</div><div class="line">  completionHandler();  <span class="comment">// 系统要求执行这个方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></jpushregisterdelegate></p>
+<p>其中：</p>
+<ul>
+<li><code>willPresentNotification</code> 在展示推送之前触发，可以在此替换推送内容，更改展示效果：内容、声音、角标。</li>
+<li><code>didReceiveNotificationResponse</code> 在收到推送后触发，你原先写在 <code>didReceiveRemoteNotification</code> 方法里接收推送并处理相关逻辑的代码，现在需要在这个方法里也写一份：</li>
+<li>App 处于后台收到推送触发</li>
+<li>点击推送条目或横幅后，App 进入前台或 App 启动触发</li>
+<li>App 处于前台时触发</li>
+</ul>
+<h4 id="Change-6：Notification-Service-Extension-amp-Notification-Content"><a href="#Change-6：Notification-Service-Extension-amp-Notification-Content" class="headerlink" title="Change 6：Notification Service Extension &amp; Notification Content"></a>Change 6：Notification Service Extension &amp; Notification Content</h4><p>这两个 iOS 10 的新特性，暂未包含在 JPush SDK 中，需要用户手动创建相应的 Target 并实现。</p>
+<h6 id="Notification-Service-Extension"><a href="#Notification-Service-Extension" class="headerlink" title="Notification Service Extension"></a>Notification Service Extension</h6><p>主要负责修改推送内容、增加图片、gif、audio、video 展示。<br>收到推送小图 - 下拉 - 展示大图<br><img src="http://upload-images.jianshu.io/upload_images/1944178-4c1e7ae1c5744115.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<h5 id="Notification-Content"><a href="#Notification-Content" class="headerlink" title="Notification Content"></a>Notification Content</h5><p>用于完全自定义推送展示 UI，响应用户操作事件，并即时更新推送展示 UI。<br>注意下图中点击 Accept 后，推送 UI 里日程表 UI 发生了刷新。<br><img src="http://upload-images.jianshu.io/upload_images/1944178-afa4d3c4f46bb01c.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<h5 id="关于-Change-6-的详细教程可参照"><a href="#关于-Change-6-的详细教程可参照" class="headerlink" title="关于 Change 6 的详细教程可参照"></a>关于 Change 6 的详细教程可参照</h5><p><a href="http://www.jianshu.com/p/25ca24215f75" target="_blank" rel="external">玩转 iOS 10 推送 —— UserNotifications Framework（下）</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果这篇文章对您有帮助，您可以请我喝一杯咖啡 :<span> </span>)</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>打赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward.png" alt="pikacode WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward.JPG" alt="pikacode Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JPush/" rel="tag">#JPush</a>
+          
+            <a href="/tags/iOS-10/" rel="tag">#iOS 10</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/24/7.玩转 iOS 10 推送 —— UserNotifications Framework（下）/" rel="next" title="玩转 iOS 10 推送 —— UserNotifications Framework（下）">
+                <i class="fa fa-chevron-left"></i> 玩转 iOS 10 推送 —— UserNotifications Framework（下）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/01/9.玩转 iOS 10 推送 —— UserNotifications Framework（合集）/" rel="prev" title="玩转 iOS 10 推送 —— UserNotifications Framework（合集）">
+                玩转 iOS 10 推送 —— UserNotifications Framework（合集） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/24/8.适配 iOS 10，极光推送用户要做这 6 处更改/"
+           data-title="适配 iOS 10，极光推送用户要做这 6 处更改" data-url="http://yoursite.com/2016/10/24/8.适配 iOS 10，极光推送用户要做这 6 处更改/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pikacode" />
+          <p class="site-author-name" itemprop="name">pikacode</p>
+          <p class="site-description motion-element" itemprop="description">dreaming & advancing</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Change-1：升级至-Xcode-8"><span class="nav-number">1.</span> <span class="nav-text">Change 1：升级至 Xcode 8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Change-2：Xcode-8-推送基本配置"><span class="nav-number">2.</span> <span class="nav-text">Change 2：Xcode 8 推送基本配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Change-3：更新-JPush-iOS-SDK-gt-v2-1-9"><span class="nav-number">3.</span> <span class="nav-text">Change 3：更新 JPush iOS SDK >= v2.1.9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Change-4：更改注册推送代码"><span class="nav-number">4.</span> <span class="nav-text">Change 4：更改注册推送代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Change-5：实现代理-方法"><span class="nav-number">5.</span> <span class="nav-text">Change 5：实现代理  方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Change-6：Notification-Service-Extension-amp-Notification-Content"><span class="nav-number">6.</span> <span class="nav-text">Change 6：Notification Service Extension & Notification Content</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Notification-Service-Extension"><span class="nav-number">6.0.1.</span> <span class="nav-text">Notification Service Extension</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Notification-Content"><span class="nav-number">6.1.</span> <span class="nav-text">Notification Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于-Change-6-的详细教程可参照"><span class="nav-number">6.2.</span> <span class="nav-text">关于 Change 6 的详细教程可参照</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikacode</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"pikacode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
