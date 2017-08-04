@@ -1,0 +1,739 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JPush,统计分析," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="想获取用户各项行为数据吗？
+想轻松查看用户行为图表吗？
+想高效进行 App 运营管理吗？
+
+想，来我带你玩转 App 数据统计。这里我使用专业、轻便的 JAnalytics。本文内容分为两部分：代码示例&amp;amp;使用技巧部分、控制台图表查看部分。
+代码示例&amp;amp;使用技巧
+集成
+下载 JAnalytics SDK
+添加 Lib 文件夹下的全部文件至 Xcode Project 
+增加相关的 f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 轻松使用 App 数据统计">
+<meta property="og:url" content="http://yoursite.com/2016/12/15/11.iOS 轻松使用 App 数据统计/index.html">
+<meta property="og:site_name" content="pikacode">
+<meta property="og:description" content="想获取用户各项行为数据吗？
+想轻松查看用户行为图表吗？
+想高效进行 App 运营管理吗？
+
+想，来我带你玩转 App 数据统计。这里我使用专业、轻便的 JAnalytics。本文内容分为两部分：代码示例&amp;amp;使用技巧部分、控制台图表查看部分。
+代码示例&amp;amp;使用技巧
+集成
+下载 JAnalytics SDK
+添加 Lib 文件夹下的全部文件至 Xcode Project 
+增加相关的 f">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-e0c59b72a222dd9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-04T09:25:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 轻松使用 App 数据统计">
+<meta name="twitter:description" content="想获取用户各项行为数据吗？
+想轻松查看用户行为图表吗？
+想高效进行 App 运营管理吗？
+
+想，来我带你玩转 App 数据统计。这里我使用专业、轻便的 JAnalytics。本文内容分为两部分：代码示例&amp;amp;使用技巧部分、控制台图表查看部分。
+代码示例&amp;amp;使用技巧
+集成
+下载 JAnalytics SDK
+添加 Lib 文件夹下的全部文件至 Xcode Project 
+增加相关的 f">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1944178-e0c59b72a222dd9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/15/11.iOS 轻松使用 App 数据统计/"/>
+
+  <title> iOS 轻松使用 App 数据统计 | pikacode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?452a3150fb96d1fa5609aa498de84a32";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">pikacode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">coding & running</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/me" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Me
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS 轻松使用 App 数据统计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T16:21:00+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/统计分析/" itemprop="url" rel="index">
+                    <span itemprop="name">统计分析</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/统计分析/JPush/" itemprop="url" rel="index">
+                    <span itemprop="name">JPush</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/15/11.iOS 轻松使用 App 数据统计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/11.iOS 轻松使用 App 数据统计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>想获取用户各项行为数据吗？</li>
+<li>想轻松查看用户行为图表吗？</li>
+<li>想高效进行 App 运营管理吗？</li>
+</ul>
+<p>想，来我带你玩转 App 数据统计。这里我使用专业、轻便的 <a href="https://docs.jiguang.cn/janalytics/guideline/intro/" target="_blank" rel="external">JAnalytics</a>。<br>本文内容分为两部分：代码示例&amp;使用技巧部分、控制台图表查看部分。</p>
+<h1 id="代码示例-amp-使用技巧"><a href="#代码示例-amp-使用技巧" class="headerlink" title="代码示例&amp;使用技巧"></a>代码示例&amp;使用技巧</h1><hr>
+<h3 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h3><ol>
+<li>下载 <a href="https://docs.jiguang.cn/janalytics/resources/" target="_blank" rel="external">JAnalytics SDK</a></li>
+<li>添加 <code>Lib</code> 文件夹下的全部文件至 Xcode Project </li>
+<li>增加相关的 framework 依赖：<br>UIKit.framework<br>SystemConfiguration.framework<br>CoreTelephony.framework<br>CoreGraphics.framework<br>Security.framework<br>Foundation.framework<br>CoreLocation.framework<br>CoreFoundation.framework<br>CFNetwork.framework<br>libz.tbd<br>libresolv.tbd</li>
+</ol>
+<h2 id="初始化-SDK"><a href="#初始化-SDK" class="headerlink" title="初始化 SDK"></a>初始化 SDK</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"JANALYTICSService.h"</span></span></div></pre></td></tr></table></figure>
+<p>在 <code>application:didFinishLaunchingWithOptions</code> 中添加以下代码：</p>
+<h6 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h6><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">JANALYTICSLaunchConfig * config = [[JANALYTICSLaunchConfig alloc] init];</div><div class="line">config.appKey = <span class="string">@"your appkey"</span>;</div><div class="line">config.channel = <span class="string">@"channel"</span>;     </div><div class="line">[JANALYTICSService setupWithConfig:config];</div></pre></td></tr></table></figure>
+<p>其中的 <code>appKey</code> 参数，需要你在<a href="https://www.jiguang.cn/app/list" target="_blank" rel="external">极光控制台</a>注册个帐号，并创建一个 App 项目来获取。</p>
+<h3 id="页面流统计"><a href="#页面流统计" class="headerlink" title="页面流统计"></a>页面流统计</h3><ul>
+<li><code>+startLogPageView</code>：开始统计某页面，可以写在 ViewControler 的 <code>viewDidAppear:</code></li>
+<li><code>+stopLogPageView</code>：结束统计某页面，可以写在 ViewControler 的 <code>viewDidDisappear:</code></li>
+</ul>
+<h6 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h6><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated &#123;</div><div class="line">  [JANALYTICSService startLogPageView:<span class="string">@"页面名称"</span>];</div><div class="line">&#125;</div><div class="line">- (<span class="keyword">void</span>)viewDidDisappear:(<span class="built_in">BOOL</span>)animated &#123;</div><div class="line">  [JANALYTICSService stopLogPageView:<span class="string">@"页面名称"</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h6><p>以上方法需要在所有 Controller 中全部写一遍，建议在自己的 UIViewController 基类 BaseViewController 或者为 UIViewController 添加 Category，添加以下代码。只要写一遍即可统计所有现有或者新增的页面，既减少了代码量，也不用担心有遗漏的页面：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated &#123;</div><div class="line">  [JANALYTICSService startLogPageView:<span class="built_in">NSStringFromClass</span>([<span class="keyword">self</span> <span class="keyword">class</span>])];</div><div class="line">&#125;</div><div class="line">- (<span class="keyword">void</span>)viewDidDisappear:(<span class="built_in">BOOL</span>)animated &#123;</div><div class="line">  [JANALYTICSService stopLogPageView:<span class="built_in">NSStringFromClass</span>([<span class="keyword">self</span> <span class="keyword">class</span>])];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在以上代码的基础上还可单独定义一个类似 PageNameFromClass 的方法，通过获取 class 转为具体的页面名称</p>
+<h3 id="地理位置统计"><a href="#地理位置统计" class="headerlink" title="地理位置统计"></a>地理位置统计</h3><p><code>+setLatitude:longitude:</code>：上报地理位置信息</p>
+<h6 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h6><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[JANALYTICSService setLatitude:<span class="number">116.46</span> longitude:<span class="number">39.92</span>];</div></pre></td></tr></table></figure>
+<h3 id="崩溃日志统计"><a href="#崩溃日志统计" class="headerlink" title="崩溃日志统计"></a>崩溃日志统计</h3><p><code>+crashLogON</code>：开启对 crash日志的收集<br>建议在 <code>application:didFinishLaunchingWithOptions</code> 调用该方法。</p>
+<h6 id="代码示例-3"><a href="#代码示例-3" class="headerlink" title="代码示例"></a>代码示例</h6><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[JANALYTICSService setLatitude:<span class="number">116.46</span> longitude:<span class="number">39.92</span>];</div></pre></td></tr></table></figure>
+<h3 id="事件统计"><a href="#事件统计" class="headerlink" title="事件统计"></a>事件统计</h3><p><code>+eventRecord</code>通过传入不同的事件模型来进行各种事件的统计，现支持的事件有：注册、登录、购买、浏览、计数、计算。</p>
+<h6 id="代码示例-4"><a href="#代码示例-4" class="headerlink" title="代码示例"></a>代码示例</h6><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[JANALYTICSService eventRecord:event];</div></pre></td></tr></table></figure>
+<p>其中的 event 需要根据事件的不同进行创建。<br>例如注册事件：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JANALYTICSRegisterEvent * event = [[JANALYTICSRegisterEvent alloc] init];</div><div class="line">event.success = <span class="literal">YES</span>;<span class="comment">//是否注册成功</span></div><div class="line">event.method = <span class="string">@"注册方法"</span>; </div><div class="line">event.extra = @&#123;<span class="string">@"自定义 key1"</span>:<span class="string">@"自定义 value1"</span>&#125;;</div><div class="line">[JANALYTICSService eventRecord:event];</div></pre></td></tr></table></figure></p>
+<p>各种不同事件的创建方法参照<a href="https://docs.jiguang.cn/janalytics/client/ios_api/#_1" target="_blank" rel="external">此处</a></p>
+<h1 id="控制台图表查看"><a href="#控制台图表查看" class="headerlink" title="控制台图表查看"></a>控制台图表查看</h1><hr>
+<p>在<a href="https://www.jiguang.cn/stat/#/app/1c29cb5814072b5b1f8ef829/push" target="_blank" rel="external">控制台统计页面</a>可以查看到 App 中各项数据的统计图表。<br><img src="http://upload-images.jianshu.io/upload_images/1944178-e0c59b72a222dd9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>免费功能：包括推送统计、用户统计、参与留存、错误分析、事件统计、页面统计等，也足以满足各项统计需求了。</li>
+<li>VIP 功能：包括 终端统计、排行统计、用户画像等高级功能。</li>
+</ul>
+<p>其中的各项数据一般会在 App 调用相应接口之后每隔 1 小时进行刷新。<br>另外每项统计下面又包含多种不同功能，大家可以依次尝试一下。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果这篇文章对您有帮助，您可以请我喝一杯咖啡 :<span> </span>)</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>打赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward.png" alt="pikacode WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward.JPG" alt="pikacode Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JPush/" rel="tag">#JPush</a>
+          
+            <a href="/tags/统计分析/" rel="tag">#统计分析</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/09/10.20 行代码极速为 App 加上聊天功能/" rel="next" title="20 行代码极速为 App 加上聊天功能">
+                <i class="fa fa-chevron-left"></i> 20 行代码极速为 App 加上聊天功能
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/06/12.iOS 推送问题全解答《十万个为啥吖》/" rel="prev" title="iOS 推送问题全解答《十万个为啥吖》">
+                iOS 推送问题全解答《十万个为啥吖》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/15/11.iOS 轻松使用 App 数据统计/"
+           data-title="iOS 轻松使用 App 数据统计" data-url="http://yoursite.com/2016/12/15/11.iOS 轻松使用 App 数据统计/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pikacode" />
+          <p class="site-author-name" itemprop="name">pikacode</p>
+          <p class="site-description motion-element" itemprop="description">dreaming & advancing</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#代码示例-amp-使用技巧"><span class="nav-number">1.</span> <span class="nav-text">代码示例&使用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集成"><span class="nav-number">1.0.1.</span> <span class="nav-text">集成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化-SDK"><span class="nav-number">1.1.</span> <span class="nav-text">初始化 SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#代码示例"><span class="nav-number">1.1.0.0.0.1.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面流统计"><span class="nav-number">1.1.1.</span> <span class="nav-text">页面流统计</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#代码示例-1"><span class="nav-number">1.1.1.0.0.1.</span> <span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#使用技巧"><span class="nav-number">1.1.1.0.0.2.</span> <span class="nav-text">使用技巧</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地理位置统计"><span class="nav-number">1.1.2.</span> <span class="nav-text">地理位置统计</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#代码示例-2"><span class="nav-number">1.1.2.0.0.1.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#崩溃日志统计"><span class="nav-number">1.1.3.</span> <span class="nav-text">崩溃日志统计</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#代码示例-3"><span class="nav-number">1.1.3.0.0.1.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件统计"><span class="nav-number">1.1.4.</span> <span class="nav-text">事件统计</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#代码示例-4"><span class="nav-number">1.1.4.0.0.1.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控制台图表查看"><span class="nav-number">2.</span> <span class="nav-text">控制台图表查看</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikacode</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"pikacode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

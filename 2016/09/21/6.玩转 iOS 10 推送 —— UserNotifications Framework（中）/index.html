@@ -1,0 +1,787 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Push Notification,iOS 10," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="上一篇 咱们聊了一些：
+
+iOS 10 before 推送的流程
+iOS 10 beta 推送的基本使用方法
+以及跟 iOS 10 before 推送的区别
+
+这一篇咱们将继续探讨 iOS 10 推送，并向大家介绍一些进阶的内容。
+Notification Actions在 iOS 10 中，可以允许推送添加交互操作 action，这些 action 可以使得 App 在前台或后台执行一些逻辑代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩转 iOS 10 推送 —— UserNotifications Framework（中）">
+<meta property="og:url" content="http://yoursite.com/2016/09/21/6.玩转 iOS 10 推送 —— UserNotifications Framework（中）/index.html">
+<meta property="og:site_name" content="pikacode">
+<meta property="og:description" content="上一篇 咱们聊了一些：
+
+iOS 10 before 推送的流程
+iOS 10 beta 推送的基本使用方法
+以及跟 iOS 10 before 推送的区别
+
+这一篇咱们将继续探讨 iOS 10 推送，并向大家介绍一些进阶的内容。
+Notification Actions在 iOS 10 中，可以允许推送添加交互操作 action，这些 action 可以使得 App 在前台或后台执行一些逻辑代码">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-ea5293c4be0c0775.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-3ebc9b53bcf6dc5c.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-68b7a8edd4ff5d27.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-3d0b1ae110343d65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-79647eddbe73b84f.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1944178-df0f0b9054c38994.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-04T09:25:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="玩转 iOS 10 推送 —— UserNotifications Framework（中）">
+<meta name="twitter:description" content="上一篇 咱们聊了一些：
+
+iOS 10 before 推送的流程
+iOS 10 beta 推送的基本使用方法
+以及跟 iOS 10 before 推送的区别
+
+这一篇咱们将继续探讨 iOS 10 推送，并向大家介绍一些进阶的内容。
+Notification Actions在 iOS 10 中，可以允许推送添加交互操作 action，这些 action 可以使得 App 在前台或后台执行一些逻辑代码">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1944178-ea5293c4be0c0775.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/21/6.玩转 iOS 10 推送 —— UserNotifications Framework（中）/"/>
+
+  <title> 玩转 iOS 10 推送 —— UserNotifications Framework（中） | pikacode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?452a3150fb96d1fa5609aa498de84a32";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">pikacode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">coding & running</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/me" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Me
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                玩转 iOS 10 推送 —— UserNotifications Framework（中）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T17:37:00+08:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Push-Notification/" itemprop="url" rel="index">
+                    <span itemprop="name">Push Notification</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Push-Notification/iOS-10/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS 10</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/21/6.玩转 iOS 10 推送 —— UserNotifications Framework（中）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/6.玩转 iOS 10 推送 —— UserNotifications Framework（中）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.jianshu.com/p/2f3202b5e758" target="_blank" rel="external">上一篇</a> 咱们聊了一些：</p>
+<ul>
+<li>iOS 10 before 推送的流程</li>
+<li>iOS 10 beta 推送的基本使用方法</li>
+<li>以及跟 iOS 10 before 推送的区别</li>
+</ul>
+<p>这一篇咱们将继续探讨 iOS 10 推送，并向大家介绍一些进阶的内容。</p>
+<h4 id="Notification-Actions"><a href="#Notification-Actions" class="headerlink" title="Notification Actions"></a>Notification Actions</h4><p>在 iOS 10 中，可以允许推送添加交互操作 <code>action</code>，这些 <code>action</code> 可以使得 App 在前台或后台执行一些逻辑代码。并且在锁屏界面通过 3d-touch 触发。如：推出键盘进行快捷回复，该功能以往只在 iMessage 中可行。<br>（Notification Actions 在 iOS 8 引入，快捷回复在 iOS 9 引入，在 iOS 10 中，这些 API 被统一。）<br><img src="http://upload-images.jianshu.io/upload_images/1944178-ea5293c4be0c0775.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在 iOS 10 中，这叫 <code>category</code>，是对推送功能的一个拓展，可以通过 3d-touch 触发。</p>
+<ol>
+<li><p>创建 <code>action</code></p>
+<ul>
+<li><p>即一项交互操作</p>
+</li>
+<li><p><code>title</code> 是交互按钮的内容</p>
+</li>
+<li><p><code>options</code> 可以让该 <code>action</code> 成为一条可在前台执行的 <code>action</code></p>
+</li>
+<li><p>创建：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UNNotificationAction *action = [UNNotificationAction actionWithIdentifier:<span class="string">@"reply"</span> title:<span class="string">@"Reply"</span> options:UNNotificationActionOptionNone];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>创建 <code>category</code></p>
+<ul>
+<li><p>可添加多个 <code>action</code> 的数组，就像图片中一样，有多种操作</p>
+</li>
+<li><p>其中的 <code>id</code>，需要填写你想要添加到哪个推送消息的 <code>id</code></p>
+</li>
+<li><p>创建：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:<span class="string">@"message"</span> actions:@[action] minimalActions:@[action] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>把 <code>category</code> 添加到通知中心：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[<span class="built_in">NSSet</span> setWithArray:@[category]]];</div></pre></td></tr></table></figure>
+</li>
+<li><p>触发方式：</p>
+<ul>
+<li><p>Remote Notifications 配置 payload，指定其中 category 的值与第 2 步中 Identifier 一致：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  aps : &#123;</div><div class="line">  alert : <span class="string">"Welcome to WWDC !"</span>,</div><div class="line">  category : <span class="string">"message"</span></div><div class="line">  		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Local Notifications 只需要在创建 contnet 的时候指定 Id 即可：（content 相关内容请参照 <a href="http://www.jianshu.com/p/2f3202b5e758" target="_blank" rel="external">上一篇</a> 中的 Content 部分）</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">content。categoryIdentifier = <span class="string">@"message"</span>;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="Dismiss-Actions"><a href="#Dismiss-Actions" class="headerlink" title="Dismiss Actions"></a>Dismiss Actions</h4><p>锁屏及在通知中心收到推送，侧滑，会展示 action。</p>
+<p>只要点击 Clear 就可以将该条推送清除，并且重复的内容不会被发送到你的其他 iOS 设备上。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1944178-3ebc9b53bcf6dc5c.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/1944178-68b7a8edd4ff5d27.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>跟 Notification Actions 只有一点小区别，就是添加 action 到 category 的时候，增加一个 option 的值 UNNotificationCategoryOptionCustomDismissAction：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UNNotificationAction *clearAction = [UNNotificationAction actionWithIdentifier:<span class="string">@"clear"</span> title:<span class="string">@"clear"</span> options:UNNotificationActionOptionNone];</div><div class="line"></div><div class="line">UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:<span class="string">@"clear"</span> actions:@[clearAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];<span class="comment">//这里增加一个 dismiss 的值</span></div></pre></td></tr></table></figure>
+<h4 id="Response-handling"><a href="#Response-handling" class="headerlink" title="Response handling"></a>Response handling</h4><p>用户点击这些 actions 以后，是启动 App、触发键盘、清除通知或是有其他的响应，这些全部只需要实现协议 UNUserNotificationCenterDelegate 中的一个方法就可以控制：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ClassName</span> () &lt;<span class="title">UNUserNotificationCenterDelegate</span>&gt;</span></div><div class="line">-(<span class="keyword">void</span>)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(<span class="keyword">void</span> (^)())completionHandler&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中的 response 包含以下内容：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1944178-3d0b1ae110343d65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>其中的 trigger 可以用来判断是远程推送还是本地推送。</p>
+<p>处理 response 举例：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(<span class="keyword">void</span> (^)())completionHandler&#123;</div><div class="line"></div><div class="line">    <span class="built_in">NSString</span> *categoryIdentifier = response.notification.request.content.categoryIdentifier;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ([categoryIdentifier isEqualToString:<span class="string">@"handle category"</span>]) &#123;<span class="comment">//识别需要被处理的拓展</span></div><div class="line"></div><div class="line">        <span class="keyword">if</span> ([response.actionIdentifier isEqualToString:<span class="string">@"input text"</span>]) &#123;<span class="comment">//识别用户点击的是哪个 action</span></div><div class="line"></div><div class="line">            <span class="comment">//假设点击了输入内容的 UNTextInputNotificationAction 把 response 强转类型</span></div><div class="line">            UNTextInputNotificationResponse *textResponse = (UNTextInputNotificationResponse*)response;</div><div class="line">          	<span class="comment">//获取输入内容</span></div><div class="line">            <span class="built_in">NSString</span> *userText = textResponse.userText;</div><div class="line">            <span class="comment">//发送 userText 给需要接收的方法</span></div><div class="line">            [ClassName handleUserText: userText];</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    completionHandler();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Service-Extension"><a href="#Service-Extension" class="headerlink" title="Service Extension"></a>Service Extension</h3><hr>
+<p>可以在手机「接收到推送之后、展示推送之前」对推送进行处理，更改、替换原有的内容。</p>
+<p>使用了这个玩意，你们公司原有发送推送的 payload 可以完全不变，而在客户端对接收到的内容（只有一条字符串）进行加工，从而适配 iOS 10 的展示效果（标题+副标题+内容）。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1944178-79647eddbe73b84f.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<h5 id="「接收到推送之后、展示推送之前」："><a href="#「接收到推送之后、展示推送之前」：" class="headerlink" title="「接收到推送之后、展示推送之前」："></a>「接收到推送之后、展示推送之前」：</h5><ul>
+<li>此时，你获得了一小段在后台运行代码的时间（也可以用来干别的坏事&gt;。&lt;，可以偷偷的断点下载你们 App 的更新包）</li>
+<li>而如果你更改推送内容出了错误，或者你调用什么方法失败了，那么最终会正常的展示最初接收到的推送内容。</li>
+</ul>
+<h4 id="Potential-uses"><a href="#Potential-uses" class="headerlink" title="Potential uses"></a>Potential uses</h4><p>值得你们 App 充分发挥的是可以做以下事情：</p>
+<ul>
+<li>端到端加密</li>
+<li>给推送展示内容添加附件（比如照片、背景音乐），使得内容更加丰富，就像从推送里拉出了一个网页有木有！</li>
+</ul>
+<p>不急，我们先来介绍怎么</p>
+<h5 id="添加-Service-Extension"><a href="#添加-Service-Extension" class="headerlink" title="添加 Service Extension"></a>添加 Service Extension</h5><p>先在 Xcode 打开你的 App 工程，File - New - Target 然后添加这个：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1944178-df0f0b9054c38994.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>然后会自动创建一个 UNNotificationServiceExtension 的子类 NotificationService，通过完善这个子类，来实现你的需求。</p>
+<p>点开 NotificationService.m 会看到 2 个方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(<span class="keyword">void</span> (^)(UNNotificationContent * _Nonnull))contentHandler &#123;</div><div class="line">    <span class="keyword">self</span>.contentHandler = contentHandler;</div><div class="line">    <span class="keyword">self</span>.bestAttemptContent = [request.content mutableCopy];</div><div class="line">    </div><div class="line">    <span class="keyword">self</span>.bestAttemptContent.title = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@ [modified]"</span>, <span class="keyword">self</span>.bestAttemptContent.title];</div><div class="line">    </div><div class="line">    <span class="keyword">self</span>.contentHandler(<span class="keyword">self</span>.bestAttemptContent);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)serviceExtensionTimeWillExpire &#123;</div><div class="line">    <span class="keyword">self</span>.contentHandler(<span class="keyword">self</span>.bestAttemptContent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>didReceiveNotificationRequest 让你可以在后台处理接收到的推送，传递最终的内容给 contentHandler</li>
+<li>serviceExtensionTimeWillExpire 在你获得的一小段运行代码的时间即将结束的时候，如果仍然没有成功的传入内容，会走到这个方法，可以在这里传肯定不会出错的内容，或者他会默认传递原始的推送内容</li>
+</ul>
+<h5 id="Example-payload"><a href="#Example-payload" class="headerlink" title="Example payload"></a>Example payload</h5><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  aps : &#123;</div><div class="line">    alert : "New Message",</div><div class="line">    mutable-content : 1</div><div class="line">  &#125;,</div><div class="line">  encrypted-content : "#myencryptedcontent"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先需要添加 mutable-content : 1，这意味着此条推送可以被 Service Extension 进行更改</p>
+<p>同时可以附加一条 encrypted-content，可以提取该内容进行替换</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(<span class="keyword">void</span> (^)(UNNotificationContent * _Nonnull))contentHandler &#123;</div><div class="line"></div><div class="line">    <span class="comment">//用你的重编码方法对该内容进行更改</span></div><div class="line">    <span class="built_in">NSString</span> *decryptedBody = [DecryptClass decrypt: request.content.userInfo[<span class="string">@"encrypted-content"</span>]];</div><div class="line"></div><div class="line">    <span class="comment">//创建新的 content 并添加修改过的 body</span></div><div class="line">    UNMutableNotificationContent *newContent = [UNMutableNotificationContent new];</div><div class="line"></div><div class="line">    newContent.body = decryptedBody;</div><div class="line"></div><div class="line">    <span class="comment">//回调新的 content</span></div><div class="line">    contentHandler(newContent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果这篇文章对您有帮助，您可以请我喝一杯咖啡 :<span> </span>)</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>打赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward.png" alt="pikacode WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward.JPG" alt="pikacode Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Push-Notification/" rel="tag">#Push Notification</a>
+          
+            <a href="/tags/iOS-10/" rel="tag">#iOS 10</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/31/5.iOS 推送全解析，你不得不知的所有 Tips！/" rel="next" title="iOS 推送全解析，你不得不知的所有 Tips！">
+                <i class="fa fa-chevron-left"></i> iOS 推送全解析，你不得不知的所有 Tips！
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/24/7.玩转 iOS 10 推送 —— UserNotifications Framework（下）/" rel="prev" title="玩转 iOS 10 推送 —— UserNotifications Framework（下）">
+                玩转 iOS 10 推送 —— UserNotifications Framework（下） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/21/6.玩转 iOS 10 推送 —— UserNotifications Framework（中）/"
+           data-title="玩转 iOS 10 推送 —— UserNotifications Framework（中）" data-url="http://yoursite.com/2016/09/21/6.玩转 iOS 10 推送 —— UserNotifications Framework（中）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pikacode" />
+          <p class="site-author-name" itemprop="name">pikacode</p>
+          <p class="site-description motion-element" itemprop="description">dreaming & advancing</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Notification-Actions"><span class="nav-number">1.</span> <span class="nav-text">Notification Actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dismiss-Actions"><span class="nav-number">2.</span> <span class="nav-text">Dismiss Actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Response-handling"><span class="nav-number">3.</span> <span class="nav-text">Response handling</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Extension"><span class="nav-number"></span> <span class="nav-text">Service Extension</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#「接收到推送之后、展示推送之前」："><span class="nav-number">0.1.</span> <span class="nav-text">「接收到推送之后、展示推送之前」：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Potential-uses"><span class="nav-number">1.</span> <span class="nav-text">Potential uses</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#添加-Service-Extension"><span class="nav-number">1.1.</span> <span class="nav-text">添加 Service Extension</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Example-payload"><span class="nav-number">1.2.</span> <span class="nav-text">Example payload</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikacode</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"pikacode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
